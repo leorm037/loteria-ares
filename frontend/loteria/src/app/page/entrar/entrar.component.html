@@ -1,0 +1,43 @@
+<form>
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-8 col-md-10 col-12">
+      <div class="card">
+        <div class="card-header bg-gradient">
+          <h5 class="mb-0"><i class="bi bi-door-open"></i> Entrar</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at"></i></span>
+                  <input type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" autofocus aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="username">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="mb-3">
+                <label for="senha_input" class="form-label">Senha</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="password_icon_input"><i class="bi bi-shield-lock"></i></span>
+                  <input type="password" minlength="6" maxlength="20" class="form-control" id="senha_input" aria-label="Senha de autenticação" aria-describedby="password_icon_input" autocomplete="current-password" placeholder="Senha de autenticação">
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="ficar-conectador" value="true" id="ficar-conectado">
+                <label class="form-check-label" for="ficar-conectado">Ficar conectado</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-gradient d-flex justify-content-between">
+          <a class="btn btn-sm btn-outline-light"><i class="bi bi-key"></i> Recuperar senha</a>
+          <button type="submit" class="btn btn-primary bg-gradient btn-sm"><i class="bi bi-floppy"></i> Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

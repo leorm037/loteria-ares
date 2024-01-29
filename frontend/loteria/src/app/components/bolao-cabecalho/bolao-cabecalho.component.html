@@ -1,0 +1,36 @@
+<div class="card-body bg-loteria-subtle border-bottom-1 shadow-sm">
+  <div class="row">
+      <div class="col-12 col-md-4">
+          <div class="input-group mb-3 mb-md-0">
+              <span class="input-group-text" id="bolao-nome-icon">
+                <i class="bi bi-flower2 icon-rotate-45"></i>
+              </span>
+              <input type="text" class="form-control" id="balao-nome" [value]="bolao.nome" readonly aria-describedby="bolao-nome-icon">
+          </div>
+      </div>
+      <div class="col-12 col-md-3">
+          <div class="input-group mb-3 mb-md-0">
+              <span class="input-group-text" id="loteria-nome-icon">
+                <i class="bi bi-list-stars"></i>
+              </span>
+              <input type="text" class="form-control" id="loteria-nome" [value]="bolao.concurso.loteria.nome" readonly aria-describedby="loteria-nome-icon">
+          </div>
+      </div>
+      <div class="col-12 col-md-2">
+          <div class="input-group mb-3 mb-md-0">
+              <span class="input-group-text" id="concurso-numero-icon">
+                  <i class="bi bi-123"></i>
+              </span>
+              <input type="text" class="form-control" id="concurso-numero" [value]="bolao.concurso.numero" readonly aria-describedby="concurso-numero-icon">
+          </div>
+      </div>
+      <div class="col-12 col-md-3">
+          <div class="input-group mb-3 mb-md-0">
+              <span class="input-group-text" id="concurso-dezenas-icon">
+                  <i class="bi bi-crosshair"></i>
+              </span>
+              <input type="text" class="form-control" id="concurso-dezenas" [value]="bolao.concurso.dezenas.join(', ')" readonly aria-describedby="concurso-dezenas-icon">
+          </div>
+      </div>
+  </div>
+</div>

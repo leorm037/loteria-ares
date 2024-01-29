@@ -1,0 +1,11 @@
+FROM node:lts
+
+RUN npm install -g json-server
+
+WORKDIR /app
+
+EXPOSE 3000
+
+ENTRYPOINT ["bash", "/app/run.sh"]
+
+CMD []

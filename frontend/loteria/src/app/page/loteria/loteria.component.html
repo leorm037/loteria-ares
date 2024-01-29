@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-0"><i class="bi bi-list-stars"></i> Loteria</h5>
+      </div>
+      <div>
+        <a class="btn btn-sm btn-primary bg-gradient"><i class="bi bi-plus"></i> Novo</a>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Dezenas</th>
+            <th scope="col">Premiar</th>
+            <th scope="col">Marcar</th>
+            <th scope="col" class="d-none d-xl-table-cell">URL Api</th>
+            <th scope="col" class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          @for (loteria of loterias; track loteria.id) {
+          <tr>
+            <th scope="row">{{ loteria.nome }}</th>
+            <td>{{ intervaloMinMax(loteria.dezenas) }}</td>
+            <td>{{ intervaloMinMax(loteria.premiar) }}</td>
+            <td>{{ intervaloMinMax(loteria.marcar) }}</td>
+            <td class="d-none d-xl-table-cell">{{ loteria.api }}</td>
+            <td class="text-center">
+              <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-cloud-download-fill"></i> Conferir</button>
+              <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-pencil-square"></i> Alterar</button>
+              <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Excluir</button>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="6" class="text-center">Nenhum registro encontrado</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,28 @@
+services:
+    angular:
+        container_name: loteria-angular
+        build:
+            context: docker
+            dockerfile: angular
+        restart: always
+        volumes:
+            - ./loteria:/app
+        working_dir: /app
+        ports:
+            - 4200:4200
+        links:
+            - json
+        depends_on:
+            - json
+
+    json:
+        container_name: loteria-json-server
+        build:
+            context: docker
+            dockerfile: json-server
+        restart: always
+        volumes:
+            - ./json-server:/app
+        working_dir: /app
+        ports:
+            - 3000:3000
