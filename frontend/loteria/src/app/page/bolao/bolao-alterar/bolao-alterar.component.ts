@@ -2,13 +2,14 @@ import { LoteriaService } from './../../../service/loteria.service';
 import { Loteria } from './../../../interface/loteria.interface';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-bolao-alterar',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './bolao-alterar.component.html',
-  styleUrl: './bolao-alterar.component.css'
+  styleUrl: './bolao-alterar.component.css',
 })
 export class BolaoAlterarComponent implements OnInit {
   loterias: Loteria[] = [];
@@ -17,9 +18,8 @@ export class BolaoAlterarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loteriaService.listar().subscribe({
-      next: (loterias) => this.loterias = loterias,
-        error: (error) => console.error(error)
-    })
+      next: (loterias) => (this.loterias = loterias),
+      error: (error) => console.error(error),
+    });
   }
-
 }

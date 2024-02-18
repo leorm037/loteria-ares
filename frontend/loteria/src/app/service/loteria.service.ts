@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Loteria } from './../interface/loteria.interface'
+import { Loteria } from './../interface/loteria.interface';
+import { TokenService } from './token.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoteriaService {
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  constructor(private http: HttpClient) {}
+  public listar(): Observable<Loteria[]> {
+    const token = this.tokenService.get()
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
 
-  listar(): Observable<Loteria[]> {
-    return this.http.get<Loteria[]>(`${environment.apiUrl}/loteria`)
+    return this.http.get<Loteria[]>(
+      `${environment.apiUrl}/loteria`,
+      { headers }
+    );
   }
-
 }

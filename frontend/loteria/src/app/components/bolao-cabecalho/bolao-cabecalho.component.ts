@@ -16,7 +16,7 @@ export class BolaoCabecalhoComponent implements OnInit {
     id: 0,
     nome: "",
     concurso: {
-      id: 0,
+      id: "0",
       numero: 0,
       apuracao: new Date(),
       rateio: [],
@@ -24,14 +24,14 @@ export class BolaoCabecalhoComponent implements OnInit {
       municipio: "",
       uf: "",
       loteria: {
-        id: 0,
+        id: "0",
         nome: "",
         slug: "",
         api: "",
-        logo: "",
         dezenas: [],
         premiar: [],
         marcar: [],
+        isActive: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },

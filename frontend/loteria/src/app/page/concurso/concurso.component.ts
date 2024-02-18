@@ -6,15 +6,12 @@ import { DatePipe } from '@angular/common';
 import { LoteriaService } from './../../service/loteria.service';
 import { FormsModule } from '@angular/forms';
 import { NovoButtonComponent } from '../../components/buttons/novo-button/novo-button.component';
+import { TokenService } from '../../service/token.service';
 
 @Component({
   selector: 'app-concurso',
   standalone: true,
-  imports: [
-    DatePipe,
-    FormsModule,
-    NovoButtonComponent
-  ],
+  imports: [DatePipe, FormsModule, NovoButtonComponent],
   templateUrl: './concurso.component.html',
   styleUrl: './concurso.component.css',
 })
@@ -30,18 +27,15 @@ export class ConcursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loteriaService.listar().subscribe(
-      (loterias) => {
-        console.log("ngOnInit: loterias:" + loterias.length)
+    this.loteriaService.listar().subscribe({
+      next: (loterias) => {
         this.loterias = loterias;
       },
-      (error) => {
-        console.error("ngOnInit: loterias" + error)
+      error: (error) => {
+        console.error('ngOnInit: loterias' + error);
       },
-      () => {
-        console.log("ngOnInit: loterias: final")
-      }
-    );
+      complete: () => {},
+    });
   }
 
   formatDezenas(dezenas: Array<number>): string {
@@ -53,20 +47,15 @@ export class ConcursoComponent implements OnInit {
   }
 
   filtrarConcursoPorLoteria(): void {
-    console.log("filtrarConcursoPorLoteria" + this.concursos.length);
-
-    this.concursoService.listar(this.loteriaId).subscribe(
-      (concursos) => {
-        console.log("filtrarConcursoPorLoteria: " + concursos.length)
+    this.concursoService.listar(this.loteriaId).subscribe({
+      next: (concursos) => {
         this.concursos = concursos;
+        console.log(concursos);
       },
-      (error) => {
-        console.error("filtrarConcursoPorLoteria:" + error)
+      error: (error) => {
+        console.log('Listar concurso: ' + error);
       },
-      () => {
-        console.log("filtrarConcursoPorLoteria: final")
-      }
-    );
+      complete: () => {},
+    });
   }
-
 }

@@ -1,12 +1,12 @@
 export interface Loteria {
-  id: number;
+  id: string;
   nome: string;
   slug: string;
   api: string;
-  logo: string;
   dezenas: Array<number>;
   premiar: Array<number>;
   marcar: Array<number>;
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

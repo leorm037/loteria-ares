@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="entrar()" class="needs-validation">
   <div class="row justify-content-center">
     <div class="col-xl-6 col-lg-8 col-md-10 col-12">
       <div class="card">
@@ -9,25 +9,31 @@
           <div class="row">
             <div class="col-12">
               <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <div class="input-group">
+                <label for="email" class="form-label" [ngClass]="{ 'text-danger': form.get('email')?.touched && form.get('email')?.invalid }">E-mail</label>
+                <div class="input-group has-validation">
                   <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at"></i></span>
-                  <input type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" autofocus aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="username">
+                  <input formControlName="email" type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" autofocus aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="username" [ngClass]="{ 'is-valid': form.get('email')?.touched && form.get('email')?.valid, 'is-invalid': form.get('email')?.touched && form.get('email')?.invalid }">
+                  @if(form.get('email')?.invalid){
+                    <div class="invalid-feedback">É obrigatório informa o e-mail de acesso.</div>
+                  }
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="mb-3">
-                <label for="senha_input" class="form-label">Senha</label>
-                <div class="input-group">
+                <label for="senha_input" class="form-label" [ngClass]="{ 'text-danger': form.get('senha')?.touched && form.get('senha')?.invalid }">Senha</label>
+                <div class="input-group has-validation">
                   <span class="input-group-text" id="password_icon_input"><i class="bi bi-shield-lock"></i></span>
-                  <input type="password" minlength="6" maxlength="20" class="form-control" id="senha_input" aria-label="Senha de autenticação" aria-describedby="password_icon_input" autocomplete="current-password" placeholder="Senha de autenticação">
+                  <input formControlName="senha" type="password" minlength="6" maxlength="20" class="form-control" id="senha_input" aria-label="Senha de autenticação" aria-describedby="password_icon_input" autocomplete="current-password" placeholder="Senha de autenticação" [ngClass]="{ 'is-valid': form.get('senha')?.touched && form.get('senha')?.valid, 'is-invalid': form.get('senha')?.touched && form.get('senha')?.invalid }">
+                  @if(form.get('senha')?.invalid){
+                    <div class="invalid-feedback">É obrigatório informa a senha de acesso.</div>
+                  }
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="ficar-conectador" value="true" id="ficar-conectado">
+                <input formControlName="ficarConectado" class="form-check-input" type="checkbox" name="ficar-conectador" id="ficar-conectado">
                 <label class="form-check-label" for="ficar-conectado">Ficar conectado</label>
               </div>
             </div>
@@ -35,7 +41,7 @@
         </div>
         <div class="card-footer bg-gradient d-flex justify-content-between">
           <a class="btn btn-sm btn-outline-light"><i class="bi bi-key"></i> Recuperar senha</a>
-          <button type="submit" class="btn btn-primary bg-gradient btn-sm"><i class="bi bi-floppy"></i> Salvar</button>
+          <app-entrar-button></app-entrar-button>
         </div>
       </div>
     </div>

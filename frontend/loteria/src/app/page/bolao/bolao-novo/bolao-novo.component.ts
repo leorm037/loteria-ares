@@ -5,6 +5,7 @@ import { Loteria } from '../../../interface/loteria.interface';
 import { SalvarButtonComponent } from './../../../components/buttons/salvar-button/salvar-button.component';
 import { LimparButtonComponent } from './../../../components/buttons/limpar-button/limpar-button.component';
 import { VoltarButtonComponent } from './../../../components/buttons/voltar-button/voltar-button.component';
+import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-bolao-novo',
@@ -13,7 +14,7 @@ import { VoltarButtonComponent } from './../../../components/buttons/voltar-butt
     RouterLink,
     SalvarButtonComponent,
     LimparButtonComponent,
-    VoltarButtonComponent
+    VoltarButtonComponent,
   ],
   templateUrl: './bolao-novo.component.html',
   styleUrl: './bolao-novo.component.css',
@@ -25,8 +26,8 @@ export class BolaoNovoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loteriaService.listar().subscribe({
-        next: (loterias) => this.loterias = loterias,
-        error: (error) => console.error(error)
+      next: (loterias) => (this.loterias = loterias),
+      error: (error) => console.error(error),
     });
   }
 }

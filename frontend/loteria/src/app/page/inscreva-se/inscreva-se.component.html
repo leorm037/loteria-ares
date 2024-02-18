@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="inscrevaSe()" class="needs-validation">
   <div class="row justify-content-center">
     <div class="col-xl-6 col-lg-8 col-md-10 col-12">
       <div class="card">
@@ -9,45 +9,74 @@
           <div class="row">
             <div class="col-12">
               <div class="mb-3">
-                <label for="nome" class="form-label">Nome</label>
-                <div class="input-group">
+                <label for="nome" class="form-label" [ngClass]="{ 'text-danger': form.get('nome')?.touched && form.get('nome')?.invalid }">Nome</label>
+                <div class="input-group has-validation">
                   <span class="input-group-text" id="nome-icon"><i class="bi bi-person"></i></span>
-                  <input type="text" maxlength="60" class="form-control" id="nome" placeholder="Nome completo" aria-label="Nome completo" aria-describedby="nome-icon" autofocus autocomplete="name">
+                  <input formControlName="nome" type="text" maxlength="60" class="form-control" id="nome" placeholder="Nome completo" aria-label="Nome completo" aria-describedby="nome-icon" autocomplete="name" [ngClass]="{ 'is-valid': form.get('nome')?.touched && form.get('nome')?.valid, 'is-invalid': form.get('nome')?.touched && form.get('nome')?.invalid }" autoFocus>
+                  @if(form.get('nome')?.invalid) {
+                    <div class="invalid-feedback">É obrigatório informar o nome completo para fazer a inscrição.</div>
+                  } @else {
+                    <div class="valid-feedback">Nome válido.</div>
+                  }
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="mb-3">
-                <label for="telefone_input" class="form-label">Telefone</label>
+                <label for="celular_input" class="form-label">Celular</label>
                 <div class="input-group">
-                  <span class="input-group-text" id="telefone_icon_input"><i class="bi bi-phone"></i></span>
-                  <input type="text" maxlength="20" class="form-control" id="telefone_input" placeholder="(00) 99999/-9999" aria-label="Número do telefone de contato" aria-describedby="telefone_icon_input">
+                  <span class="input-group-text" id="celular_icon_input"><i class="bi bi-phone"></i></span>
+                  <input formControlName="celular" type="text" maxlength="20" class="form-control" id="celular_input" placeholder="(00) 99999/-9999" aria-label="Número do celular de contato" aria-describedby="celular_icon_input" [ngClass]="{ 'is-valid': form.get('celular')?.touched }">
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <div class="input-group">
+                <label for="email" class="form-label" [ngClass]="{ 'text-danger': form.get('email')?.touched && form.get('email')?.invalid }">E-mail</label>
+                <div class="input-group has-validation">
                   <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at"></i></span>
-                  <input type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="email">
+                  <input formControlName="email" type="email" maxlength="60" class="form-control" id="email" placeholder="email completo" aria-label="email completo" aria-describedby="email-icon" autocomplete="name" [autofocus]="true" [ngClass]="{ 'is-valid': form.get('email')?.touched && form.get('email')?.valid, 'is-invalid': form.get('email')?.touched && form.get('email')?.invalid }">
+                  @if(form.get('email')?.invalid) {
+                    <div class="invalid-feedback">
+                      @if(form.get('email')?.errors?.['required']){
+                        É obrigatório informar um e-mail para fazer a inscrição.
+                      }
+                      @if(form.get('email')?.errors?.['email']){
+                        O e-mail informado não é válido.
+                      }
+                    </div>
+                  } @else {
+                    <div class="valid-feedback">E-mail válido.</div>
+                  }
                 </div>
               </div>
             </div>
             <div class="col-12">
               <div class="mb-3">
-                <label for="senha_input" class="form-label">Senha</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="password_icon_input"><i class="bi bi-shield-lock"></i></span>
-                  <input type="password" minlength="6" maxlength="20" class="form-control" id="senha_input" aria-label="Senha de autenticação" aria-describedby="password_icon_input" autocomplete="new-password">
+                <label for="senha" class="form-label" [ngClass]="{ 'text-danger': form.get('senha')?.touched && form.get('senha')?.invalid }">Senha</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="senha-icon"><i class="bi bi-shield-lock"></i></span>
+                  <input formControlName="senha" type="password" maxlength="60" class="form-control" id="senha" placeholder="Senha de acesso" aria-label="Senha de acesso" aria-describedby="senha-icon" autocomplete="name" [autofocus]="true" [ngClass]="{ 'is-valid': form.get('senha')?.touched && form.get('senha')?.valid, 'is-invalid': form.get('senha')?.touched && form.get('senha')?.invalid }">
+                  @if(form.get('senha')?.invalid) {
+                    <div class="invalid-feedback">
+                      @if(form.get('senha')?.errors?.['required']){
+                        É obrigatório informar uma senha para fazer a inscrição.
+                      }
+                      @if(form.get('senha')?.errors?.['minlength']){
+                        A senha deve ter no mínimo 6 caracteres.
+                      }
+                    </div>
+                  } @else {
+                    <div class="valid-feedback">Senha válida.</div>
+                  }
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer bg-gradient d-flex justify-content-between">
-          <button class="btn btn-secondary bg-gradient btn-sm" type="reset"><i class="fa-solid fa-broom"></i> Limpar</button>
-          <button type="submit" class="btn btn-primary bg-gradient btn-sm"><i class="bi bi-floppy"></i> Salvar</button>
+          <app-limpar-button></app-limpar-button>
+          <app-enviar-button></app-enviar-button>
         </div>
       </div>
     </div>

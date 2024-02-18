@@ -1,7 +1,7 @@
 import { Loteria } from "./loteria.interface";
 
 export interface Concurso {
-  id: number;
+  id: string;
   numero: number;
   apuracao: Date;
   rateio: Array<string>;

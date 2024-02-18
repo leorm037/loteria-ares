@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          @for (loteria of loterias; track loteria.id) {
+          @for (loteria of loterias; track loteria.slug) {
           <tr>
             <th scope="row">{{ loteria.nome }}</th>
             <td>{{ intervaloMinMax(loteria.dezenas) }}</td>

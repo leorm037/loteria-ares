@@ -33,7 +33,7 @@
         <tbody class="table-group-divider">
           @for (concurso of concursos; track concurso.id) {
           <tr>
-            <th scope="row">{{ concurso.id }} - {{ concurso.numero }}</th>
+            <th scope="row">{{ concurso.numero }}</th>
             <td>{{ formatDezenas(concurso.dezenas) }}</td>
             <td>{{ concurso.apuracao | date: 'dd/MM/yyyy' }}</td>
             <td>São Paulo</td>
