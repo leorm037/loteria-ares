@@ -1,12 +1,13 @@
 services:
     angular:
-        container_name: loteria-api-angular
+        container_name: loteria-ares-angular
         build:
             context: docker
             dockerfile: angular
+        image: loteria-ares-angular:latest
         restart: always
         volumes:
-            - ./loteria:/app
+            - .:/app
         working_dir: /app
         ports:
             - 4200:4200

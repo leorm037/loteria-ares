@@ -1,0 +1,33 @@
+<div class="collapse navbar-collapse d-lg-flex justify-content-between align-items-center" id="navbarMenu">
+    <ul class="navbar-nav mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pagina-inicial" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-house-fill"></i> Página inicial </a>
+      </li>
+      <ng-container *ngIf="usuario$ | async as usuario;">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/loteria" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-list-stars"></i> Loteria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/concurso" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-suit-club-fill"></i> Concurso </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/bolao" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-flower2 icon-rotate-45"></i> Bolão</a>
+        </li>
+      </ng-container>
+    </ul>
+    <ul class="navbar-nav mb-lg-0">
+      <ng-container *ngIf="usuario$ | async as usuario; else entrar">
+        <li class="nav-item">
+          <button class="nav-link" (click)="sair()"><i class="bi bi-door-closed-fill"></i> Sair</button>
+        </li>
+      </ng-container>
+      <ng-template #entrar>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/entrar" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-door-open"></i> Entrar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inscreva-se" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-person-plus"></i> Inscreva-se</a>
+        </li>
+      </ng-template>
+    </ul>
+</div>
