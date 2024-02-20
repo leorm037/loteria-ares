@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
+import { Usuario } from '../interface/usuario.interface';
 
 const KEY = 'access_token';
 
@@ -21,7 +23,21 @@ export class TokenService {
   }
 
   public has(): boolean {
-    return !!this.get();
+
+    return !!this.get() && this.isValid();
+  }
+
+  public isValid(): boolean {
+    const usuario = jwtDecode(this.get()) as Usuario;
+    const exp = usuario.exp || 0;
+    const current = Math.floor((new Date()).getTime()/1000);
+
+    if (current >= exp) {
+      this.remove();
+      return false;
+    }
+
+    return true;
   }
 
 }

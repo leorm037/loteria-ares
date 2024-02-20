@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
+  isLoading$ = new Subject<boolean>();
 
-  constructor() { }
+  public show(): void {
+    this.isLoading$.next(true);
+  }
 
-  public show(): void {}
-
-  public hide(): void {}
+  public hide(): void {
+    this.isLoading$.next(false);
+  }
 }

@@ -53,7 +53,8 @@ export class ConcursoComponent implements OnInit {
       error: (error) => {
         console.log('Listar concurso: ' + error);
       },
-      complete: () => {},
+      complete: () => {
+      },
     });
   }
 }
