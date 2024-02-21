@@ -4,11 +4,12 @@ import { MenuComponent } from './components/menu/menu.component';
 import { environment } from './../environments/environment';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MensagemComponent } from './components/mensagem/mensagem.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, LoadingComponent, MensagemComponent],
+  imports: [RouterOutlet, MenuComponent, LoadingComponent, MensagemComponent,ToasterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -16,5 +17,5 @@ export class AppComponent {
 
   public constructor(){}
 
-  version: string = environment.version
+  version: string = environment.version;
 }

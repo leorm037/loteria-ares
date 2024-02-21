@@ -10,6 +10,6 @@ import { RouterLink } from '@angular/router';
 })
 export class NovoButtonComponent {
 
-  @Input() link:string = "";
+  @Input() link: string = "";
 
 }

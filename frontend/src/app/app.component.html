@@ -1,16 +1,8 @@
+<app-loading></app-loading>
+<app-mensagem></app-mensagem>
+<app-toaster></app-toaster>
 <header class="mb-3">
-  <nav class="navbar navbar-expand-lg bg-loteria bg-gradient" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">
-        <img src="assets/img/bolao-32x32.png" alt="Imagem de um trevo e quatro folhas" width="32" height="32" class="d-inline-block align-text-top">
-        Bolão
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Menu de navegação">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <app-menu class="container-fluid"></app-menu>
-    </div>
-  </nav>
+  <app-menu></app-menu>
 </header>
 <main class="container-fluid">
   <router-outlet></router-outlet>
@@ -23,5 +15,3 @@
     </div>
   </nav>
 </footer>
-<app-loading></app-loading>
-<app-mensagem></app-mensagem>

@@ -5,7 +5,6 @@ import { Loteria } from '../../../interface/loteria.interface';
 import { SalvarButtonComponent } from './../../../components/buttons/salvar-button/salvar-button.component';
 import { LimparButtonComponent } from './../../../components/buttons/limpar-button/limpar-button.component';
 import { VoltarButtonComponent } from './../../../components/buttons/voltar-button/voltar-button.component';
-import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-bolao-novo',

@@ -4,7 +4,6 @@ import {
   FormGroup,
   ReactiveFormsModule,
   FormBuilder,
-  Form,
   Validators,
 } from '@angular/forms';
 import { EntrarButtonComponent } from '../../components/buttons/entrar-button/entrar-button.component';
@@ -49,8 +48,8 @@ export class EntrarComponent implements OnInit {
       const senha = this.form.get('senha')?.value;
 
       this.service.entrar(email, senha).subscribe({
-        next: (value) => {
-          this.router.navigate(['/'])
+        next: () => {
+          this.router.navigate(['/']);
           this.form.reset();
         },
         error: (err) => {

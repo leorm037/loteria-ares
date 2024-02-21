@@ -10,6 +10,6 @@ import { RouterLink } from '@angular/router';
 })
 export class ApostaButtonComponent {
 
-  @Input() link:string = "";
+  @Input() link: string = "";
 
 }

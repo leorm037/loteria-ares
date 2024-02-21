@@ -14,7 +14,7 @@
             <label for="loteria" class="form-label">Loteria</label>
             <div class="input-group">
               <span class="input-group-text" id="loteria-icon"><i class="bi bi-list-stars"></i></span>
-              <select class="form-select" id="loteria" autofocus aria-label="Loteria" aria-describedby="loteria-icon">
+              <select class="form-select" id="loteria" aria-label="Loteria" aria-describedby="loteria-icon">
                 <option value="0" selected>Selecione uma loteria</option>
                 @for (loteria of loterias; track loteria.id) {
                   <option value="{{ loteria.id }}">{{ loteria.nome }}</option>
@@ -37,7 +37,7 @@
             <label for="nome" class="form-label">Nome do bolão</label>
             <div class="input-group">
               <span class="input-group-text" id="nome-icon"><i class="bi bi-alphabet"></i></span>
-              <input type="nome" maxlength="120" class="form-control" id="nome" placeholder="Nome do bolão" autofocus aria-label="Nome do bolão" aria-describedby="nome-icon">
+              <input type="nome" maxlength="120" class="form-control" id="nome" placeholder="Nome do bolão" aria-label="Nome do bolão" aria-describedby="nome-icon">
             </div>
           </div>
         </div>

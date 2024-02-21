@@ -2,7 +2,6 @@ import { LoteriaService } from './../../../service/loteria.service';
 import { Loteria } from './../../../interface/loteria.interface';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TokenService } from '../../../service/token.service';
 
 @Component({
   selector: 'app-bolao-alterar',

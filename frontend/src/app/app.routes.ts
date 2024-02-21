@@ -1,4 +1,3 @@
-import { Bolao } from './interface/bolao.internface';
 import { Routes } from '@angular/router';
 import { PaginaInicialComponent } from './page/pagina-inicial/pagina-inicial.component';
 import { ConcursoComponent } from './page/concurso/concurso.component';
@@ -22,55 +21,66 @@ export const routes: Routes = [
   },
   {
     path: 'pagina-inicial',
-    component: PaginaInicialComponent
+    component: PaginaInicialComponent,
+    title: 'Bolão'
   },
   {
     path: 'concurso',
     component: ConcursoComponent,
+    title: 'Concursos - Bolão',
     canActivate: [authGuard] },
   {
     path: 'bolao',
     component: BolaoComponent,
+    title: 'Bolão - Bolão',
     canActivate: [authGuard]
   },
   {
     path: 'bolao/alterar',
     component: BolaoAlterarComponent,
+    title: 'Alterar Bolão - Bolão',
     canActivate: [authGuard],
   },
   {
     path: 'bolao/novo',
     component: BolaoNovoComponent,
+    title: 'Novo Bolão',
     canActivate: [authGuard],
   },
   {
     path: 'bolao/:id/apostador',
     component: BolaoApostadorComponent,
+    title: 'Apostadores do bolão - Bolão',
     pathMatch: 'full',
     canActivate: [authGuard],
   },
   {
     path: 'bolao/apostador/novo',
     component: BolaoApostadorNovoComponent,
+    title: 'Novo apostador do bolão - Bolão',
     canActivate: [authGuard],
   },
   {
     path: 'bolao/apostador/alterar',
     component: BolaoApostadorAlterarComponent,
+    title: 'Alterar apostador do bolão - Bolão',
     canActivate: [authGuard],
   },
   {
     path: 'loteria',
     component: LoteriaComponent,
+    title: 'Loterias - Bolão',
     canActivate: [authGuard]
   },
   {
     path: 'entrar',
-    component: EntrarComponent
+    component: EntrarComponent,
+    title: 'Entrar - Bolão'
   },
   {
     path: 'inscreva-se',
-    component: InscrevaSeComponent
+    component: InscrevaSeComponent,
+    title: 'Inscreva-se - Bolão'
    },
   {
     path: '**',

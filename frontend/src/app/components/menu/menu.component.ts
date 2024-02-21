@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UsuarioService } from '../../service/usuario.service';
 import { CommonModule } from '@angular/common';
@@ -12,12 +12,18 @@ import { CommonModule } from '@angular/common';
 })
 export class MenuComponent {
 
+  public show: boolean = false;
+
   public usuario$ = this.usuarioService.get();
 
   constructor(
     private usuarioService: UsuarioService,
     private router: Router
   ) {}
+
+  public toggle() {
+    this.show = !this.show;
+  }
 
   public sair(): void {
     this.usuarioService.sair();

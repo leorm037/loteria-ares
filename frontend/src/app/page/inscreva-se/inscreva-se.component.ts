@@ -30,7 +30,7 @@ export class InscrevaSeComponent implements OnInit {
       celular: [null],
       email: [null, [Validators.required, Validators.email]],
       senha: [null, [Validators.required, Validators.minLength(6)]]
-    })
+    });
 
   }
 
@@ -38,16 +38,16 @@ export class InscrevaSeComponent implements OnInit {
     if(this.form.valid){
       this.service.inscrevaSe(this.getUsuario()).subscribe({
         next: (value) => {
-          console.log(value)
-          this.router.navigateByUrl('/entrar')
+          console.log(value);
+          this.router.navigateByUrl('/entrar');
         },
         error: (error) => {
-          console.log("Inscrição não realizada.", error)
+          console.log("Inscrição não realizada.", error);
         }
-      })
+      });
     } else {
-      this.form.markAllAsTouched()
-      this.form.markAsDirty()
+      this.form.markAllAsTouched();
+      this.form.markAsDirty();
     }
   }
 
@@ -57,6 +57,6 @@ export class InscrevaSeComponent implements OnInit {
       celular: this.form.value.celular,
       email: this.form.value.email,
       senha: this.form.value.senha
-    }
+    };
   }
 }

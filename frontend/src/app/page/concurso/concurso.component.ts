@@ -33,7 +33,7 @@ export class ConcursoComponent implements OnInit {
       error: (error) => {
         console.error('ngOnInit: loterias' + error);
       },
-      complete: () => {},
+      complete: () => {}
     });
   }
 
@@ -54,7 +54,8 @@ export class ConcursoComponent implements OnInit {
         console.log('Listar concurso: ' + error);
       },
       complete: () => {
-      },
+
+      }
     });
   }
 }

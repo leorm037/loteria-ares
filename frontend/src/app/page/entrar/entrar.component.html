@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="entrar()" class="needs-validation">
-  <div class="row justify-content-center">
+  <div class="entrar-container row justify-content-center">
     <div class="col-xl-6 col-lg-8 col-md-10 col-12">
       <div class="card">
         <div class="card-header bg-gradient">
@@ -12,7 +12,7 @@
                 <label for="email" class="form-label" [ngClass]="{ 'text-danger': form.get('email')?.touched && form.get('email')?.invalid }">E-mail</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="email-icon"><i class="bi bi-envelope-at"></i></span>
-                  <input formControlName="email" type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" autofocus aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="username" [ngClass]="{ 'is-valid': form.get('email')?.touched && form.get('email')?.valid, 'is-invalid': form.get('email')?.touched && form.get('email')?.invalid }">
+                  <input formControlName="email" type="email" maxlength="120" class="form-control" id="email" placeholder="email@dominio.com" aria-label="Endereço de e-mail para autenticação" aria-describedby="email-icon" autocomplete="username" [ngClass]="{ 'is-valid': form.get('email')?.touched && form.get('email')?.valid, 'is-invalid': form.get('email')?.touched && form.get('email')?.invalid }">
                   @if(form.get('email')?.invalid){
                     <div class="invalid-feedback">É obrigatório informa o e-mail de acesso.</div>
                   }

@@ -3,8 +3,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Apostador } from '../../../interface/apostador.interface';
 import { BolaoApostadorService } from './../../../service/bolao-apostador.service';
 import { BolaoCabecalhoComponent } from './../../../components/bolao-cabecalho/bolao-cabecalho.component';
-import { Bolao } from '../../../interface/bolao.internface';
-import { BolaoService } from '../../../service/bolao.service';
 
 @Component({
   selector: 'app-bolao-apostador',
