@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { LoteriaService } from './../../service/loteria.service';
 import { FormsModule } from '@angular/forms';
 import { NovoButtonComponent } from '../../components/buttons/novo-button/novo-button.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-concurso',
@@ -15,8 +16,12 @@ import { NovoButtonComponent } from '../../components/buttons/novo-button/novo-b
   styleUrl: './concurso.component.css',
 })
 export class ConcursoComponent implements OnInit {
-  loterias: Loteria[] = [];
+
+  private concursosSubscription!: Subscription;
+
   concursos: Concurso[] = [];
+
+  public loterias$!: Observable<Loteria[]>;
 
   loteriaId: number = 0;
 
@@ -26,23 +31,15 @@ export class ConcursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loteriaService.listar().subscribe({
-      next: (loterias) => {
-        this.loterias = loterias;
-      },
-      error: (error) => {
-        console.error('ngOnInit: loterias' + error);
-      },
-      complete: () => {}
-    });
+    this.loterias$ = this.loteriaService.listar();
   }
 
   formatDezenas(dezenas: Array<number>): string {
     return dezenas
-      .map((dezena) => {
-        return dezena.toString().padStart(2, '0');
-      })
-      .join(', ');
+    .map((dezena) => {
+      return dezena.toString().padStart(2, '0');
+    })
+    .join(', ');
   }
 
   filtrarConcursoPorLoteria(): void {

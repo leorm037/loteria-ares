@@ -10,12 +10,13 @@ import { EntrarButtonComponent } from '../../components/buttons/entrar-button/en
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../service/usuario.service';
 import { Router } from '@angular/router';
+import { MensagemService } from './../../service/mensagem.service';
 
 @Component({
   selector: 'app-entrar',
   standalone: true,
   imports: [ReactiveFormsModule, EntrarButtonComponent, CommonModule],
-templateUrl: './entrar.component.html',
+  templateUrl: './entrar.component.html',
   styleUrl: './entrar.component.css',
 })
 export class EntrarComponent implements OnInit {
@@ -31,7 +32,8 @@ export class EntrarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: UsuarioService,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private msg: MensagemService
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +53,6 @@ export class EntrarComponent implements OnInit {
         next: () => {
           this.router.navigate(['/']);
           this.form.reset();
-        },
-        error: (err) => {
-          console.log('Entrar: ', err);
         }
       });
     } else {

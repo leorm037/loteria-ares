@@ -22,24 +22,26 @@
             <th scope="col" class="text-center">Ações</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider">
-          @for (loteria of loterias; track loteria.slug) {
-          <tr>
-            <th scope="row">{{ loteria.nome }}</th>
-            <td>{{ intervaloMinMax(loteria.dezenas) }}</td>
-            <td>{{ intervaloMinMax(loteria.premiar) }}</td>
-            <td>{{ intervaloMinMax(loteria.marcar) }}</td>
-            <td class="d-none d-xl-table-cell">{{ loteria.api }}</td>
-            <td class="text-center">
-              <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-cloud-download-fill"></i> Conferir</button>
-              <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-pencil-square"></i> Alterar</button>
-              <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Excluir</button>
-            </td>
-          </tr>
-          } @empty {
-          <tr>
-            <td colspan="6" class="text-center">Nenhum registro encontrado</td>
-          </tr>
+        <tbody class="table-group-divider" >
+          @if (loterias$ | async; as loterias) {
+            @for (loteria of loterias; track loteria.slug) {
+              <tr>
+                <th scope="row">{{ loteria.nome }}</th>
+                <td>{{ loteria.dezenas | intervaloMinMax }}</td>
+                <td>{{ loteria.premiar | intervaloMinMax }}</td>
+                <td>{{ loteria.marcar | intervaloMinMax }}</td>
+                <td class="d-none d-xl-table-cell">{{ loteria.api }}</td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-cloud-download-fill"></i> Conferir</button>
+                  <button type="button" class="btn btn-sm btn-secondary me-2"><i class="bi bi-pencil-square"></i> Alterar</button>
+                  <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Excluir</button>
+                </td>
+              </tr>
+            }
+          } @else {
+            <tr>
+              <td colspan="6" class="text-center">Nenhum registro encontrado</td>
+            </tr>
           }
         </tbody>
       </table>

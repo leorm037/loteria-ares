@@ -1,37 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Loteria } from './../../interface/loteria.interface';
 import { LoteriaService } from '../../service/loteria.service';
+import { CommonModule } from '@angular/common';
+import { IntervaloMinMaxPipe } from './../../pipes/intervalo-min-max.pipe';
+import { Observable } from 'rxjs';
+import { Loteria } from '../../interface/loteria.interface';
 
 @Component({
   selector: 'app-loteria',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, IntervaloMinMaxPipe],
   templateUrl: './loteria.component.html',
   styleUrl: './loteria.component.css',
 })
 export class LoteriaComponent implements OnInit {
-  loterias: Loteria[] = [];
+  public loterias$!: Observable<Loteria[]>;
 
   constructor(private service: LoteriaService) {}
 
   ngOnInit(): void {
-    this.service.listar().subscribe({
-      next: (loterias) => {
-        this.loterias = loterias;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {},
-    });
-  }
-
-  intervaloMinMax(value: Array<number>): string {
-    const min: number = Math.min(...value);
-    const max: number = Math.max(...value);
-
-    return `${min.toString().padStart(2, '0')} a ${max
-      .toString()
-      .padStart(2, '0')}`;
+    this.loterias$ = this.service.listar();
   }
 }

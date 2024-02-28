@@ -1,31 +1,33 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { ToastService } from './../service/toast.service';
+import { MensagemService } from './../service/mensagem.service';
 import { inject } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const toastService: ToastService = inject(ToastService);
+  const msg: MensagemService = inject(MensagemService);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      let errorMessage = 'Ocorreu um erro desconhecido.';
+      let errorMessage = 'Ops, ocorreu um erro desconhecido.';
 
       if (error.error instanceof ErrorEvent) {
         errorMessage = `Erro do cliente: ${error.error.message}`;
       } else if (error.status === 404) {
-        errorMessage = 'Recurso não enconstrado.';
+        errorMessage = 'Recurso não encontrado.';
       } else if (error.status === 500) {
         errorMessage = 'Sistema indisponível.';
       } else if (error.status === 401) {
-        errorMessage = 'Acesso não autorizado.';
+        errorMessage = 'E-mail ou senha inválido.';
+      } else if (error.status === 0) {
+        errorMessage = 'O servidor não está respondendo. <br> Tente novamente mais tarde.';
       }
 
-      toastService.showDangerToast(errorMessage);
+      console.error("Interceptor error", error.message);
 
-      console.error(error.status, error.message, errorMessage);
+      msg.error(errorMessage);
 
-      return throwError(() => new Error('Ops, ocorreu um erro'));
+      return throwError(() => new Error(errorMessage));
     })
   );
 };

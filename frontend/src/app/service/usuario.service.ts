@@ -4,7 +4,7 @@ import { Usuario } from './../interface/usuario.interface';
 import { MessageResponse } from './../interface/messageResponse.interface';
 import { AuthResponse } from './../interface/auth-response.interface';
 import { environment } from './../../environments/environment';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, catchError, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { jwtDecode } from 'jwt-decode';
 
@@ -60,6 +60,10 @@ export class UsuarioService {
             this.tokenService.save(authToken);
             this.decodificarJWT();
           }
+        }),
+        catchError((error) => {
+          console.log(error);
+          return EMPTY;
         })
       );
   }

@@ -9,8 +9,10 @@
   <div class="card-body bg-loteria-subtle border-bottom-1">
     <select class="form-select" aria-label="Selecione uma loteria" [(ngModel)]="loteriaId" (change)="filtrarConcursoPorLoteria()">
       <option [value]="0" selected>Selecione uma loteria</option>
-      @for (loteria of loterias; track loteria.id) {
-        <option [value]="loteria.id">{{ loteria.nome }}</option>
+      @if(loterias$ | async; as loterias){
+        @for (loteria of loterias; track loteria.id) {
+          <option [value]="loteria.id">{{ loteria.nome }}</option>
+        }
       }
     </select>
   </div>
