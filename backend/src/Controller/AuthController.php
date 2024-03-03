@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Usuario;
 use App\Repository\UsuarioRepository;
-use Nelmio\ApiDocBundle\Annotation\Model;
-use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,16 +22,6 @@ class AuthController extends AbstractController
     }
 
     #[Route('/api/inscreva-se', name: 'app_auth_inscreva-se', methods: ['POST'])]
-    #[OA\Response(
-                response: 200,
-                description: 'Cadastro de novos usuários.',
-                content: new OA\JsonContent(
-                        type: 'array',
-                        items: new OA\Items(
-                                ref: new Model(type: Usuario::class)
-                        )
-                )
-    )]
     public function new(Request $request): JsonResponse
     {
         $usuarioJson = $request->toArray();
@@ -47,10 +35,10 @@ class AuthController extends AbstractController
                 ->setPassword(
                         $this->userPasswordHasher->hashPassword($usuario, $usuarioJson['senha'])
                 )
-        ;       
-        
+        ;
+
         $this->usuarioRepository->save($usuario, true);
-        
+
         $message = [
             'code' => 200,
             'status' => 'success',
@@ -60,7 +48,7 @@ class AuthController extends AbstractController
                 'message' => "Usuário \"{$usuario->getNome()}\" cadastrado com sucesso!"
             ]
         ];
-        
+
         return $this->json($message);
     }
 }

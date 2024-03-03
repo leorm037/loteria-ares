@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/U:/home/leorm/git/loteria-ares/backend/src/Controller/ConcursoController.php</file>
-            <file>file:/U:/home/leorm/git/loteria-ares/backend/src/Controller/LoteriaController.php</file>
-            <file>file:/U:/home/leorm/git/loteria-ares/backend/src/Entity/Usuario.php</file>
-            <file>file:/U:/home/leorm/git/loteria-ares/backend/src/Entity/Loteria.php</file>
-            <file>file:/U:/home/leorm/git/loteria-ares/backend/src/Controller/AuthController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

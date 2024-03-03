@@ -1,9 +1,0 @@
-nelmio_api_doc:
-    documentation:
-        info:
-            title: Loteria - API
-            description: Aplicativo de Bolão!
-            version: 0.1.
-    areas: # to filter documented areas
-        path_patterns:
-            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
