@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class LoteriaController extends AbstractController
+final class ConcursoController extends AbstractController
 {
-    #[Route('/loteria', name: 'app_loteria')]
+    #[Route('/concurso', name: 'app_concurso')]
     public function index(): JsonResponse
     {
         return $this->json([
             'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/LoteriaController.php',
+            'path' => 'src/Controller/ConcursoController.php',
         ]);
     }
 }
