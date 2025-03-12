@@ -1,0 +1,49 @@
+{
+    "loteria": [
+        {
+            "id": 1,
+            "nome": "Mega-Sena"
+        },
+        {
+            "id": 2,
+            "nome": "Quina"
+        },
+        {
+            "id": 3,
+            "nome": "Lotofácil"
+        }
+    ],
+    "concurso": [
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 3
+        }
+    ],
+    "usuario": [
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 3
+        }
+    ],
+    "bolao": [
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 3
+        }
+    ]
+}
