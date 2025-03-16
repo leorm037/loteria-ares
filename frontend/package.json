@@ -1,10 +1,11 @@
 {
   "name": "loteria",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
+    "prestart": "npx figlet 'Loteria start'",
     "ng": "ng",
-    "start": "node loteria-ascii.js && ng serve --host 0.0.0.0",
-    "build": "ng build",
+    "start": "ng serve --host 0.0.0.0",
+    "build": "npx figlet 'Loteria build' && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,6 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "figlet": "^1.8.0",
     "jquery": "^3.7.1",
     "rxjs": "~7.8.0",
