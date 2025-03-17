@@ -1,7 +1,7 @@
 <header class="mb-3">
   <nav id="menu" class="navbar navbar-expand-lg bg-loteria">
     <div class="container-fluid">
-      <a class="navbar-brand navbar-bg-loteria" href="#">
+      <a class="navbar-brand navbar-bg-loteria" routerLink="/">
         <i class="fa-solid fa-clover icon-rotate-45"></i> Loteria
       </a>
       <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
@@ -11,7 +11,17 @@
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a data-loading="true" class="nav-link" href="#">
+            <a class="nav-link" routerLink="/loteria" routerLinkActive="active">
+              <i class="fa-regular fa-futbol"></i> Loteria
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/concurso" routerLinkActive="active">
+              <i class="bi bi-suit-club-fill"></i> Concurso
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/bolao" routerLinkActive="active">
               <i class="fa-regular fa-futbol"></i> Bolão
             </a>
           </li>

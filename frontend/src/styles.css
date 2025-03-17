@@ -19,7 +19,7 @@
     background-color: var(--green)!important;
 }
 
-.text-loteria, .nav-link {
+.text-loteria {
     color: var(--green-100)!important;
 }
 
@@ -45,8 +45,12 @@
     border-color: var(--green-200)!important;
 }
 
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-    color: var(--green-100);
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show, .nav-link {
+    color: var(--green-200);
+}
+
+.nav-link.active {
+    color: white !important;
 }
 
 .navbar-bg-loteria {

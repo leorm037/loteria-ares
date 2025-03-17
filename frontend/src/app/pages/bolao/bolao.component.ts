@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-bolao',
   imports: [],
-  templateUrl: './bolao.component.html',
-  styleUrl: './bolao.component.css'
+  templateUrl: './bolao.component.html'
 })
 export class BolaoComponent {
 
