@@ -1,0 +1,52 @@
+{
+    "loterias": [
+        {
+            "id": "1",
+            "nome": "Mega-sena",
+            "uuid": "01904569-087e-7b66-aaf6-99f06e120feb",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena",
+            "slug_url": "mega-sena",
+            "aposta": "6,7,8,9,10,11,12,13,14,15",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60",
+            "created_at": "2024-06-23 14:03:49",
+            "updated_at": ""
+        },
+        {
+            "id": "2",
+            "nome": "+Milionária",
+            "uuid": "019056d9-c2c8-70fa-9d61-859c730b739a",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/maismilionaria",
+            "slug_url": "",
+            "aposta": "06,07,08,09,10,11,12",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",
+            "created_at": "2024-06-23 15:03:49",
+            "updated_at": ""
+        },{
+            "id": "3",
+            "nome": "Lotofácil",
+            "uuid": "0190e53a-58f4-7c00-9ee5-44b8da56fa7d",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil",
+            "slug_url": "lotofacil",
+            "aposta": "15,16,17,18,19,20",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+            "created_at": "2024-06-23 16:03:49",
+            "updated_at": ""
+        },{
+            "id": "4",
+            "nome": "Quina",
+            "uuid": "019056d9-c2c8-70fa-9d61-859c7358f5c7",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/quina",
+            "slug_url": "quina",
+            "aposta": "06,07,08,09,10,11,12",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+            "created_at": "2024-06-23 16:13:49",
+            "updated_at": ""
+        }
+    ],
+    "concursos": [],
+    "usuarios": [],
+    "boloes": [],
+    "apostadores": [],
+    "apostas": [],
+    "arquivos": []
+}

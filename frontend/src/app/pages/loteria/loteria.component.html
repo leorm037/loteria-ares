@@ -5,7 +5,7 @@
                 <h1 class="h4 m-0"><i class="fa-solid fa-clover icon-rotate-45"></i> Loteria</h1>
             </div>
             <div>
-                <a href="#" class="btn btn-secondary btn-sm bg-gradient shadow-sm">
+                <a routerLink="/loteria/novo" class="btn btn-secondary btn-sm bg-gradient shadow-sm">
                     <i class="bi bi-plus"></i> Novo
                 </a>
             </div>
@@ -29,9 +29,19 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                @for(loteria of loterias; track loteria.id) {
+                <tr>
+                    <td>{{ loteria.nome }}</td>
+                    <td>{{ loteria.slug_url }}</td>
+                    <td>{{ loteria.api_url }}</td>
+                    <td>{{ loteria.created_at | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td><a [routerLink]="['/loteria','alterar',loteria.uuid]">Editar</a></td>
+                </tr>
+                } @empty {
                 <tr>
                     <td colspan="5" class="text-center">Nenhum registro encontrado</td>
                 </tr>
+                }
             </tbody>
         </table>
     </div>

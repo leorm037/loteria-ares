@@ -3,6 +3,10 @@ import { BolaoComponent } from './pages/bolao/bolao.component';
 import { ConcursoComponent } from './pages/concurso/concurso.component';
 import { LoteriaComponent } from './pages/loteria/loteria.component';
 import { BolaoCadastrarComponent } from './pages/bolao/bolao-cadastrar/bolao-cadastrar.component';
+import { LoteriaCadastrarComponent } from './pages/loteria/loteria-cadastrar/loteria-cadastrar.component';
+import { PaginaNaoEncontradaComponent } from './pages/error/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { BolaoAlterarComponent } from './pages/bolao/bolao-alterar/bolao-alterar.component';
+import { LoteriaAlterarComponent } from './pages/loteria/loteria-alterar/loteria-alterar.component';
 
 export const routes: Routes = [
     {
@@ -12,18 +16,42 @@ export const routes: Routes = [
     },
     {
         path: 'loteria',
-        component: LoteriaComponent
+        component: LoteriaComponent,
+        title: 'Loteria'
+    },
+    {
+        path: 'loteria/novo',
+        component: LoteriaCadastrarComponent,
+        title: 'Nova loteria'
+    },
+    {
+        path: 'loteria/alterar/:uuid',
+        component: LoteriaAlterarComponent,
+        title: 'Alterar loteria'
     },
     {
         path: 'concurso',
-        component: ConcursoComponent
+        component: ConcursoComponent,
+        title: 'Concurso'
     },
     {
         path: 'bolao',
-        component: BolaoComponent
+        component: BolaoComponent,
+        title: 'Bolão'
     },
     {
         path: 'bolao/novo',
-        component: BolaoCadastrarComponent
+        component: BolaoCadastrarComponent,
+        title: 'Novo bolão'
+    },
+    {
+        path: 'bolao/alterar/:uuid',
+        component: BolaoAlterarComponent,
+        title: 'Novo bolão'
+    },
+    {
+        path: '**',
+        component: PaginaNaoEncontradaComponent,
+        title: 'Página não encontrada'
     }
 ];

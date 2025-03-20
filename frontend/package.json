@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "scripts": {
     "prestart": "npx figlet 'Loteria start'",
+    "predb": "npx figlet 'Loteria database'",
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
-    "build": "npx figlet 'Loteria build' && ng build",
+    "db": "npx json-server db.json",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -24,6 +26,7 @@
     "bootstrap-icons": "^1.11.3",
     "figlet": "^1.8.0",
     "jquery": "^3.7.1",
+    "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
