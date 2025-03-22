@@ -74,3 +74,19 @@ label.required:after{
    margin-left: 2px;
    font-weight: bold;
 }
+
+.validator-invalid {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: var(--bs-form-invalid-color);
+}
+
+.validator-valid {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: var(--bs-form-valid-color);
+}

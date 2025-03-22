@@ -1,3 +1,8 @@
+@if (messageAlert.show) {
+    <ngb-alert type="{{ messageAlert.type }}" (closed)="messageAlert.show = false">
+        {{ messageAlert.message }}
+    </ngb-alert>
+}
 <div class="card shadow-sm">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
@@ -21,6 +26,9 @@
                             class="fa-solid fa-clover icon-rotate-45"></i></span>
                     <select name="filter_loteria" id="filter_loteria" class="form-select" aria-label="Loteria" aria-describedby="loteria_icon" autofocus="true">
                         <option>Selecione uma loteria</option>
+                        @for (loteria of loterias$ | async; track loteria.uuid ) {
+                            <option value="{{ loteria.uuid }}">{{ loteria.nome }}</option>
+                        }
                     </select>
                 </div>
             </div>

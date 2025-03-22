@@ -7,6 +7,8 @@ import { LoteriaCadastrarComponent } from './pages/loteria/loteria-cadastrar/lot
 import { PaginaNaoEncontradaComponent } from './pages/error/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { BolaoAlterarComponent } from './pages/bolao/bolao-alterar/bolao-alterar.component';
 import { LoteriaAlterarComponent } from './pages/loteria/loteria-alterar/loteria-alterar.component';
+import { AutenticacaoComponent } from './pages/autenticacao/autenticacao.component';
+import { InscricaoComponent } from './pages/inscricao/inscricao.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +50,16 @@ export const routes: Routes = [
         path: 'bolao/alterar/:uuid',
         component: BolaoAlterarComponent,
         title: 'Novo bolão'
+    },
+    {
+        path: 'autenticacao',
+        component: AutenticacaoComponent,
+        title: 'Autenticação'
+    },
+    {
+        path: 'inscricao',
+        component: InscricaoComponent,
+        title: 'Inscrição'
     },
     {
         path: '**',

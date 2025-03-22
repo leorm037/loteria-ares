@@ -1,3 +1,8 @@
+@if (messageAlert.show) {
+    <ngb-alert type="{{ messageAlert.type }}" (closed)="messageAlert.show = false">
+        {{ messageAlert.message }}
+    </ngb-alert>
+}
 <div class="card shadow-sm">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
@@ -29,7 +34,8 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @for(loteria of loterias; track loteria.id) {
+
+                @for (loteria of loterias$ | async; track loteria) {
                 <tr>
                     <td>{{ loteria.nome }}</td>
                     <td>{{ loteria.slug_url }}</td>
@@ -80,7 +86,11 @@
                 </nav>
             </div>
             <div class="col-12 col-sm-3 mt-1 text-sm-end text-center">
-                xx registro(s).
+                @if (totalRegistros$ | async) {
+                    {{ totalRegistros$ | async }}
+                } @else {
+                    0
+                } registro(s).
             </div>
         </div>
     </div>
