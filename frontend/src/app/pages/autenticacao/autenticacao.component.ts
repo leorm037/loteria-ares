@@ -10,7 +10,7 @@ import { AutenticacaoService } from '../../services/autenticacao.service';
 })
 export class AutenticacaoComponent implements OnInit {
 
-  autenticacaoForm!: FormGroup;
+  public autenticacaoForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,7 +30,7 @@ export class AutenticacaoComponent implements OnInit {
       const email = this.autenticacaoForm.value.email;
       const senha = this.autenticacaoForm.value.senha;
 
-      this.service.autenticacao(email,senha).subscribe({
+      this.service.autenticacao(email, senha).subscribe({
         next: data => console.log(data),
         error: error => console.error(error)
       });

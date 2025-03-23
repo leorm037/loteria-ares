@@ -1,1 +1,81 @@
-<p>inscricao works!</p>
+<form [formGroup]="inscricaoForm" (ngSubmit)="inscrever()">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-6">
+            @if (messageAlert.show) {
+                <ngb-alert type="{{ messageAlert.type }}" (closed)="messageAlert.show = false">
+                    {{ messageAlert.message }}
+                </ngb-alert>
+            }
+            <div class="card shadow">
+                <div class="card-header bg-gradient">
+                    <h1 class="h4 m-0"><i class="bi bi-person-add"></i> Inscrição</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="mb-3 col-12">
+                            <label for="usuario_registro_nome" class="form-label required">Nome completo</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="nome-icon"><i class="bi bi-person"></i></span>
+                                <input id="usuario_registro_nome" formControlName="nomeCompleto" type="text" autofocus="autofocus" class="form-control" />
+                                @if (inscricaoForm.get('nomeCompleto')?.touched && inscricaoForm.get('nomeCompleto')?.errors?.['required']) {
+                                    <div class="validator-invalid">Informe o nome completo.</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label for="usuario_registro_email" class="form-label required">E-mail</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="email-icone"><i class="bi bi-envelope-at"></i></span>
+                                <input formControlName="email" type="email" class="form-control" />
+                                @if (inscricaoForm.get('email')?.touched && inscricaoForm.get('email')?.errors?.['required']) {
+                                    <div class="validator-invalid">Informe o endereço de e-mail.</div>
+                                }
+                                @if (inscricaoForm.get('email')?.touched && inscricaoForm.get('email')?.errors?.['email']) {
+                                    <div class="validator-invalid">Informe um e-mail válido (exemplo&#64;dominio.com).</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="usuario_registro_plainPassword_first" class="form-label required">Senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="plainPassword-first-icone"><i
+                                        class="bi bi-key"></i></span>
+                                <input id="usuario_registro_plainPassword_first" formControlName="senha" type="password" autocomplete="new-password" class="form-control" />
+                                @if (inscricaoForm.get('senha')?.touched && inscricaoForm.get('senha')?.errors?.['required']) {
+                                    <div class="validator-invalid">Informe a senha.</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="mb-3 col-12 col-md-6">
+                            <label for="usuario_registro_plainPassword_second" class="form-label required">Confirmar
+                                senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="plainPassword-second-icone"><i
+                                        class="bi bi-key"></i></span>
+                                <input formControlName="senhaConfirmar" type="password" id="usuario_registro_plainPassword_second"
+                                    name="usuario_registro[plainPassword][second]" required="required"
+                                    autocomplete="new-password" class="form-control" />
+                                @if (inscricaoForm.get('senhaConfirmar')?.touched && inscricaoForm.get('senhaConfirmar')?.errors?.['required']) {
+                                    <div class="validator-invalid">Informe a senha novamente para confirmar.</div>
+                                }
+                            </div>
+                        </div>
+                        @if (inscricaoForm.get('senha')?.touched && inscricaoForm.get('senhaConfirmar')?.touched && inscricaoForm.errors?.['camposIguais']) {
+                            <div class="mb-3 col-12" class="validator-invalid">Os valores dos campos confirmar senha e senha devem ser iguais.</div>
+                        }
+                        <div class="mb-3 col-12" class="">Campos com * o preenchimento é obrigatório.</div>
+                    </div>
+                </div>
+                <div class="card-footer bg-gradient">
+                    <div class="text-end">
+                        <button type="reset" class="btn btn-secondary bg-gradient btn-sm shadow me-2"><i
+                                class="fa-solid fa-broom"></i> Limpar</button>
+                        <button type="submit" class="btn btn-primary bg-gradient btn-sm shadow"><i
+                                class="bi bi-floppy"></i> Salvar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
