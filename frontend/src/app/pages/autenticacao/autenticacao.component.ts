@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
+import { Breadcrumb } from '../../interfaces/breadcrumb';
+import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-autenticacao',
@@ -12,10 +14,18 @@ export class AutenticacaoComponent implements OnInit {
 
   public autenticacaoForm!: FormGroup;
 
+  private readonly breadcrumbs: Breadcrumb[] = [
+    {
+      iconClass: "bi bi-door-closed",
+      texto: "Entrar"
+    }
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private service: AutenticacaoService,
-    private router: Router
+    private router: Router,
+    private breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +33,8 @@ export class AutenticacaoComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       senha: [null, Validators.required]
     });
+
+    this.breadcrumbService.sendBreadcrumb(this.breadcrumbs);
   }
 
   public autenticar() {

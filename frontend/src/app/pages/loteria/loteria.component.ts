@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoteriaService } from '../../services/loteria.service';
-import { Loteria } from '../../interface/loteria';
+import { Loteria } from '../../interfaces/loteria';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { MessageAlert } from '../../interface/message-alert';
+import { MessageAlert } from '../../interfaces/message-alert';
 import { MessageAlertType } from '../../enum/message-alert-type';
 import { catchError, EMPTY, map, Observable } from 'rxjs';
+import { Breadcrumb } from '../../interfaces/breadcrumb';
+import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
   selector: 'app-loteria',
@@ -18,10 +20,18 @@ export class LoteriaComponent implements OnInit {
   loterias$!: Observable<Loteria[]>;
   totalRegistros$!: Observable<number>;
 
+  private readonly breadcrumbs: Breadcrumb[] = [
+    {
+      iconClass: "fa-solid fa-clover icon-rotate-45",
+      texto: "Loteria"
+    }
+  ];
+
   messageAlert: MessageAlert = { type: MessageAlertType.INFO, message: "Mensagem", show: false };
 
   constructor(
-    private service: LoteriaService
+    private service: LoteriaService,
+    private breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +53,8 @@ export class LoteriaComponent implements OnInit {
         return EMPTY;
       })
     );
+
+    this.breadcrumbService.sendBreadcrumb(this.breadcrumbs);
   }
 
 }

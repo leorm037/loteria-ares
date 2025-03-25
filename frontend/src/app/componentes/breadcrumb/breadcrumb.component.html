@@ -1,0 +1,29 @@
+<nav id="breadcrumb" aria-label="breadcrumb" class="bg-loteria-secondary shadow border-bottom border-loteria"
+    style="--bs-breadcrumb-divider: '>';">
+    <ol class="breadcrumb m-0 p-2">
+        <li class="breadcrumb-item">
+            <a href="/loteria/" class="text-decoration-none">
+                <i class="bi bi-house-fill"></i> Página inicial
+            </a>
+        </li>
+        @for (breadcrumb of breadcrumbs; track breadcrumb.texto) {
+            @if (breadcrumb.href == null) {
+            <li class="breadcrumb-item active">
+                @if (breadcrumb.iconClass) {
+                    <i class="{{ breadcrumb.iconClass }}" aria-hidden="true"></i>  
+                }
+                {{ breadcrumb.texto }}
+            </li>
+            } @else {
+                <li class="breadcrumb-item">
+                    <a routerLink="{{ breadcrumb.href }}" class="text-decoration-none">
+                        @if (breadcrumb.iconClass) {
+                            <i class="{{ breadcrumb.iconClass }}" aria-hidden="true"></i>  
+                        }
+                        {{ breadcrumb.texto }}
+                    </a>
+                </li>
+            }
+        }
+    </ol>
+</nav>

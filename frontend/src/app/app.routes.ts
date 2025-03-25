@@ -52,7 +52,7 @@ export const routes: Routes = [
         title: 'Novo bolão'
     },
     {
-        path: 'autenticacao',
+        path: 'entrar',
         component: AutenticacaoComponent,
         title: 'Autenticação'
     },
