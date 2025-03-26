@@ -18,11 +18,11 @@ export class BreadcrumbComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.service.getBreadcrumbs().subscribe(
-      breadcrumbs => {
-        this.breadcrumbs = breadcrumbs;
-      }
-    );
+    this.service.getBreadcrumbs()
+      .subscribe(
+        breadcrumbs => {
+          this.breadcrumbs = breadcrumbs;
+        }
+      );
   }
-
 }

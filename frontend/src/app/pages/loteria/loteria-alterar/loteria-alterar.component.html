@@ -1,1 +1,95 @@
-<p>loteria-alterar works! {{ loteriaUuid }} </p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="card shadow-sm">
+        <div class="card-header bg-gradient">
+            <h1 class="h4 m-0"><i class="bi bi-pencil-square"></i> Alterar</h1>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="mb-3">
+                        <label for="loteria_nome" class="form-label required">Nome</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="bi bi-alphabet"></i>
+                            </div>
+                            <input formControlName="nome" type="text" id="loteria_nome" autofocus="autofocus" class="form-control" />
+                        </div>
+                        @if (form.get('nome')?.touched && form.get('nome')?.errors?.['required']) {
+                            <div class="validator-invalid">Informe o nome da loteria.</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="mb-3">
+                        <label for="loteria_slugUrl" class="form-label">Abreviação</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <i class="bi bi-alphabet"></i>
+                            </div>
+                            <input formControlName="abreviacao" type="text" id="loteria_slugUrl" class="form-control" readonly />
+                        </div>
+                        <div id="loteria_slugUrl_help" class="form-text mb-0 help-text">Campo gerado automaticamente</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="loteria_apiUrl" class="form-label required">Endereço da API</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-link-45deg"></i>
+                    </div>
+                    <input formControlName="apiUrl" type="text" id="loteria_apiUrl" class="form-control" />
+                </div>
+                @if (form.get('apiUrl')?.touched && form.get('apiUrl')?.errors?.['required']) {
+                    <div class="validator-invalid">Informe a URL da api para recuperar os dados da loteria.</div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="loteria_aposta" class="form-label required">Apostas</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-123"></i>
+                    </div>
+                    <input formControlName="apostas" type="text" id="loteria_aposta" class="form-control" />
+                </div>
+                @if (form.get('apostas')?.touched && form.get('apostas')?.errors?.['required']) {
+                    <div class="validator-invalid">Informe a quantidade de dezenas permitidas por aposta.</div>
+                }
+                <div id="loteria_aposta_help" class="form-text mb-0 help-text">Quantidade de dezenas permitidas em uma única aposta</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="loteria_dezenas" class="form-label required">Dezenas</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-123"></i>
+                    </div>
+                    <input formControlName="dezenas" type="text" id="loteria_dezenas" class="form-control" />
+                </div>
+                @if (form.get('dezenas')?.touched && form.get('dezenas')?.errors?.['required']) {
+                    <div class="validator-invalid">Informe as dezenas permitidas em uma aposta.</div>
+                }
+            </div>
+        </div>
+
+        <div class="card-footer bg-gradient d-flex justify-content-between">
+            <div>
+                <a class="btn btn-outline-secondary bg-gradient btn-sm shadow" href="#">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+            <div>
+                <button type="reset" class="btn btn-secondary bg-gradient btn-sm shadow me-1">
+                    <i class="fa-solid fa-broom"></i> Limpar
+                </button>
+                <button type="submit" class="btn btn-primary bg-gradient btn-sm shadow">
+                    <i class="bi bi-floppy"></i> Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
