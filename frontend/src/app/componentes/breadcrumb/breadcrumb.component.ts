@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { RouterModule } from '@angular/router';
@@ -18,12 +18,11 @@ export class BreadcrumbComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.service.getBreadcrumbs().subscribe(
-        breadcrumbs => {
-          this.breadcrumbs = breadcrumbs;
-        }
-      );
+    this.service.getBreadcrumbs().subscribe(
+      breadcrumbs => {
+        this.breadcrumbs = breadcrumbs;
+      }
+    );
   }
-
 
 }

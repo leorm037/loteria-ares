@@ -19,51 +19,81 @@ export const routes: Routes = [
     {
         path: 'loteria',
         component: LoteriaComponent,
-        title: 'Loteria'
+        title: 'Loteria',
+        data: {
+            description: 'Consulta de Loterias',
+        }
     },
     {
         path: 'loteria/novo',
         component: LoteriaCadastrarComponent,
-        title: 'Nova loteria'
+        title: 'Nova Loteria',
+        data: {
+            description: 'Cadastro de Loteria',
+        }
     },
     {
         path: 'loteria/alterar/:uuid',
         component: LoteriaAlterarComponent,
-        title: 'Alterar loteria'
+        title: 'Alterar Loteria',
+        data: {
+            description: 'Alterar Loteria',
+        }
     },
     {
         path: 'concurso',
         component: ConcursoComponent,
-        title: 'Concurso'
+        title: 'Concurso',
+        data: {
+            description: 'Consultar Concurso',
+        }
     },
     {
         path: 'bolao',
         component: BolaoComponent,
-        title: 'Bolão'
+        title: 'Bolão',
+        data: {
+            description: 'Bolão',
+        }
     },
     {
         path: 'bolao/novo',
         component: BolaoCadastrarComponent,
-        title: 'Novo bolão'
+        title: 'Novo Bolão',
+        data: {
+            description: 'Cadastro de Bolão',
+        }
     },
     {
         path: 'bolao/alterar/:uuid',
         component: BolaoAlterarComponent,
-        title: 'Novo bolão'
+        title: 'Alterar bolão',
+        data: {            
+            description: 'Alterar Bolão',
+        }
     },
     {
         path: 'entrar',
         component: AutenticacaoComponent,
-        title: 'Autenticação'
+        title: 'Entrar',
+        data: {
+            description: 'Autenticação',
+        }
     },
     {
         path: 'inscricao',
         component: InscricaoComponent,
-        title: 'Inscrição'
+        title: 'Inscreva-se',
+        data: {
+            description: 'Cadastro de novo usuário',
+        }
     },
     {
         path: '**',
         component: PaginaNaoEncontradaComponent,
-        title: 'Página não encontrada'
+        title: 'Página não encontrada',
+        data: {
+            description: 'Error 404 - Página não encontrada',
+        }
     }
 ];

@@ -35,6 +35,11 @@
                 "glob": "favicon.ico",
                 "input": "src/assets/favicon",
                 "output": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/images",
+                "output": "public/assets/images"
               }
             ],
             "styles": [

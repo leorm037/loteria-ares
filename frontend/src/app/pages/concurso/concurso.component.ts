@@ -21,7 +21,7 @@ export class ConcursoComponent implements OnInit {
   messageAlert: MessageAlert = {
     type: MessageAlertType.INFO,
     message: "Mensagem",
-    show: true
+    show: false
   };
 
   private readonly breadcrumbs: Breadcrumb[] = [
