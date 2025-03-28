@@ -4,11 +4,12 @@ import { LoteriaService } from '../../services/loteria.service';
 import { Loteria } from '../../interfaces/loteria';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { MessageAlert } from '../../interfaces/message-alert';
-import { MessageAlertType } from '../../enum/message-alert-type';
 import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { MessageAlert } from '../../interfaces/message-alert';
+import { MessageAlertService } from '../../services/message-alert.service';
+import { MessageAlertType } from '../../enum/message-alert-type';
 
 @Component({
   selector: 'app-loteria',
@@ -27,22 +28,20 @@ export class LoteriaComponent implements OnInit {
     }
   ];
 
-  messageAlert: MessageAlert = { type: MessageAlertType.INFO, message: "Mensagem", show: false };
-
   constructor(
     private service: LoteriaService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private messageAlertService: MessageAlertService
   ) { }
 
   ngOnInit(): void {
     this.loterias$ = this.service.listAll().pipe(
       catchError((error) => {
         console.error(error);
-        this.messageAlert = {
+        this.messageAlertService.sendMessagesAlert([{
           type: MessageAlertType.DANGER,
-          message: 'Ops! Não foi possível recuperar a lista de loterias. Tente carregar novamente.',
-          show: true
-        };
+          message: 'Ops! Não foi possível recuperar a lista de loterias. Tente carregar novamente.'
+        }]);
         return EMPTY;
       })
     );

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
-  selector: 'app-autenticacao',
-  imports: [ReactiveFormsModule],
-  templateUrl: './autenticacao.component.html'
+  selector: 'app-entrar',
+  imports: [ReactiveFormsModule, RouterModule],
+  templateUrl: './entrar.component.html'
 })
-export class AutenticacaoComponent implements OnInit {
+export class EntrarComponent implements OnInit {
 
   public autenticacaoForm!: FormGroup;
 
@@ -31,7 +31,8 @@ export class AutenticacaoComponent implements OnInit {
   ngOnInit(): void {
     this.autenticacaoForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      senha: [null, Validators.required]
+      senha: [null, Validators.required],
+      lembrar: [false]
     });
 
     this.breadcrumbService.sendBreadcrumb(this.breadcrumbs);

@@ -1,14 +1,9 @@
 <form [formGroup]="inscricaoForm" (ngSubmit)="inscrever()">
     <div class="row justify-content-md-center">
         <div class="col col-lg-6">
-            @if (messageAlert.show) {
-                <ngb-alert type="{{ messageAlert.type }}" (closed)="messageAlert.show = false">
-                    {{ messageAlert.message }}
-                </ngb-alert>
-            }
             <div class="card shadow">
                 <div class="card-header bg-gradient">
-                    <h1 class="h4 m-0"><i class="bi bi-person-add"></i> Inscrição</h1>
+                    <h1 class="h4 m-0"><i class="bi bi-person-add"></i> Inscreva-se</h1>
                 </div>
                 <div class="card-body">
                     <div class="row">

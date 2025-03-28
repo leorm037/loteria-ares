@@ -1,0 +1,8 @@
+@for (message of messagesAlert; track message.message) {
+    <div class="alert alert-{{ message.type }}" role="alert">
+        @if (message.iconClass) {
+            <i class="{{ message.iconClass }}" aria-hidden="true"></i> 
+        }
+        {{ message.message }}
+    </div>
+}

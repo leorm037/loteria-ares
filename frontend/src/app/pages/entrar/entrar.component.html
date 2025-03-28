@@ -12,10 +12,10 @@
                             <span class="input-group-text" id="username-icone"><i class="bi bi-envelope-at"></i></span>
                             <input formControlName="email" type="email" class="form-control" id="username" name="_username" value=""
                                 autocomplete="username" placeholder="name@example.com">
-                            @if (autenticacaoForm.get('email')?.errors?.['required']) {
+                            @if (autenticacaoForm.get('email')?.touched && autenticacaoForm.get('email')?.errors?.['required']) {
                                 <div class="validator-invalid">Informe o e-mail cadastrado para entrar.</div>
                             }
-                            @if (autenticacaoForm.get('email')?.errors?.['email']) {
+                            @if (autenticacaoForm.get('email')?.touched && autenticacaoForm.get('email')?.errors?.['email']) {
                                 <div class="validator-invalid">Informe um e-mail inválido.</div>
                             }
                         </div>
@@ -33,15 +33,15 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="_remember_me" id="remember">
-                            <label class="form-check-label" for="remember">Ficar conectado</label>
+                            <input formControlName="lembrar" class="form-check-input" type="checkbox" id="lembrar">
+                            <label class="form-check-label" for="lembrar">Ficar conectado</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-end">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <a href="/loteria/reset-password" data-loading="true" class="btn btn-outline-secondary btn-sm shadow">
+                            <a routerLink="/recuperar-senha" class="btn btn-outline-secondary btn-sm shadow">
                                 <i class="bi bi-key"></i> Recuperar senha
                             </a>
                         </div>

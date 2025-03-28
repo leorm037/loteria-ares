@@ -8,6 +8,7 @@ import { MessageAlertType } from '../../enum/message-alert-type';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
+import { MessageAlertService } from '../../services/message-alert.service';
 
 @Component({
   selector: 'app-inscricao',
@@ -25,17 +26,12 @@ export class InscricaoComponent implements OnInit {
 
   public inscricaoForm!: FormGroup;
 
-  public messageAlert: MessageAlert = {
-    type: MessageAlertType.INFO,
-    message: "Mensagem",
-    show: false
-  };
-
   constructor(
     private formBuilder: FormBuilder,
     private service: AutenticacaoService,
     private router: Router,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private messageAlertService: MessageAlertService
   ) { }
 
   ngOnInit(): void {
@@ -53,14 +49,12 @@ export class InscricaoComponent implements OnInit {
 
   public inscrever() {
     if (this.inscricaoForm.valid) {
-      this.router.navigateByUrl('/autenticacao');
+      this.router.navigateByUrl('/entrar');
     } else {
-      this.messageAlert = {
+      this.messageAlertService.sendMessagesAlert([{
         type: MessageAlertType.DANGER,
-        message: 'Preencha os campos conforme instruções.',
-        show: true
-      };
-
+        message: 'Preencha os campos conforme instruções.'
+      }]);
     }
   }
 

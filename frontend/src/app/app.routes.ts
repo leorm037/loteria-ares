@@ -7,8 +7,9 @@ import { LoteriaCadastrarComponent } from './pages/loteria/loteria-cadastrar/lot
 import { PaginaNaoEncontradaComponent } from './pages/error/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { BolaoAlterarComponent } from './pages/bolao/bolao-alterar/bolao-alterar.component';
 import { LoteriaAlterarComponent } from './pages/loteria/loteria-alterar/loteria-alterar.component';
-import { AutenticacaoComponent } from './pages/autenticacao/autenticacao.component';
-import { InscricaoComponent } from './pages/inscricao/inscricao.component';
+import { EntrarComponent } from './pages/entrar/entrar.component';
+import { InscricaoComponent } from './pages/inscreva-se/inscricao.component';
+import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
 
 export const routes: Routes = [
     {
@@ -73,19 +74,27 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'inscricao',
+        component: InscricaoComponent,
+        title: 'Inscreva-se',
+        data: {
+            description: 'Cadastro de novo usuário',
+        }
+    },
+    {
         path: 'entrar',
-        component: AutenticacaoComponent,
+        component: EntrarComponent,
         title: 'Entrar',
         data: {
             description: 'Autenticação',
         }
     },
     {
-        path: 'inscricao',
-        component: InscricaoComponent,
-        title: 'Inscreva-se',
+        path: 'recuperar-senha',
+        component: RecuperarSenhaComponent,
+        title: 'Recuperar senha',
         data: {
-            description: 'Cadastro de novo usuário',
+            description: 'Recuperar senha',
         }
     },
     {
