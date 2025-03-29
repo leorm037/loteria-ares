@@ -2,13 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { camposIguaisValidator } from '../../validators/campos-iguais-validator';
-import { AutenticacaoService } from '../../services/autenticacao.service';
-import { MessageAlert } from '../../interfaces/message-alert';
 import { MessageAlertType } from '../../enum/message-alert-type';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { MessageAlertService } from '../../services/message-alert.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-inscricao',
@@ -28,7 +27,7 @@ export class InscricaoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: AutenticacaoService,
+    private service: UsuarioService,
     private router: Router,
     private breadcrumbService: BreadcrumbService,
     private messageAlertService: MessageAlertService
@@ -49,7 +48,19 @@ export class InscricaoComponent implements OnInit {
 
   public inscrever() {
     if (this.inscricaoForm.valid) {
-      this.router.navigateByUrl('/entrar');
+      const usuario = {
+        nome: 'teste'
+      };
+
+      this.service.save(usuario).subscribe({
+        next: (usuario) => {
+          console.log(usuario);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+          // this.router.navigateByUrl('/entrar');
     } else {
       this.messageAlertService.sendMessagesAlert([{
         type: MessageAlertType.DANGER,

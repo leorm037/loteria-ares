@@ -1,6 +1,6 @@
 <?php
 
-namespace DTO;
+namespace App\DTO;
 
 class PremioBolaoDTO {
     
