@@ -12,18 +12,21 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 /**
  * @extends ServiceEntityRepository<Usuario>
  */
-class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgraderInterface {
+
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Usuario::class);
+    }
+
+    public function save(Usuario $usuario): void {
+        $this->getEntityManager()->persist($usuario);
+        $this->getEntityManager()->flush();
     }
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
-    {
+    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void {
         if (!$user instanceof Usuario) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
@@ -47,7 +50,6 @@ class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgra
     //            ->getResult()
     //        ;
     //    }
-
     //    public function findOneBySomeField($value): ?Usuario
     //    {
     //        return $this->createQueryBuilder('u')

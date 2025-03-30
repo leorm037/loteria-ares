@@ -49,18 +49,29 @@ export class InscricaoComponent implements OnInit {
   public inscrever() {
     if (this.inscricaoForm.valid) {
       const usuario = {
-        nome: 'teste'
+        nome: this.inscricaoForm.get('nomeCompleto')?.value,
+        email: this.inscricaoForm.get('email')?.value,
+        plainPassword: this.inscricaoForm.get('senha')?.value
       };
 
       this.service.save(usuario).subscribe({
-        next: (usuario) => {
-          console.log(usuario);
+        next: (response) => {
+          this.messageAlertService.sendMessagesAlert([{
+            type: MessageAlertType.SUCCESS,
+            message: response.message
+          }]);
         },
         error: (error) => {
           console.log(error);
+          this.messageAlertService.sendMessagesAlert([{
+            type: MessageAlertType.DANGER,
+            message: error
+          }]);
         }
       });
-          // this.router.navigateByUrl('/entrar');
+
+      this.router.navigateByUrl('/entrar');
+
     } else {
       this.messageAlertService.sendMessagesAlert([{
         type: MessageAlertType.DANGER,

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
+import { MessageResponse } from '../interfaces/message-response';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UsuarioService {
     private http: HttpClient
   ) { }
 
-  public save(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.urlApi}`, usuario);
+  public save(usuario: Usuario): Observable<MessageResponse> {
+    return this.http.post<MessageResponse>(`${this.urlApi}`, usuario);
   }
 }
