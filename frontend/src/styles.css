@@ -69,7 +69,7 @@
 }
 
 label.required:after{
-   color: red;
+   /* color: red; */
    content: "*";
    margin-left: 2px;
    font-weight: bold;

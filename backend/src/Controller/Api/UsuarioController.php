@@ -30,7 +30,7 @@ final class UsuarioController extends AbstractController {
             ValidatorInterface $validator,
     ): JsonResponse {
         if ($request->getContentTypeFormat() != 'json') {
-            $this->logger->error('Enviar a requisição em formato JSON para o cadastro de usuário');
+            $this->logger->error("Requisição em formato ${$request->getContentTypeFormat()} é inválida para cadastro de usuário");
             
             return $this->json([
                         'status' => 400,
@@ -85,7 +85,7 @@ final class UsuarioController extends AbstractController {
 
         $this->repository->save($usuario);
 
-        return $this->json(['message' => 'Usuário cadastrado com sucesso.'], 201);
+        return $this->json(['message' => "O usuário com o e-mail \"{$usuario->getEmail()}\" foi cadastrado com sucesso."], 201);
     }
 
     #[Route('/api/usuarios', name: 'app_api_usuario_get', methods: ['GET'])]

@@ -4,6 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
+import { MessageAlertService } from '../../services/message-alert.service';
+import { MessageAlertType } from '../../enum/message-alert-type';
 
 @Component({
   selector: 'app-entrar',
@@ -25,7 +27,8 @@ export class EntrarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: AutenticacaoService,
     private router: Router,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private messageAlertService: MessageAlertService
   ) { }
 
   ngOnInit(): void {
@@ -44,15 +47,16 @@ export class EntrarComponent implements OnInit {
       const senha = this.autenticacaoForm.value.senha;
 
       this.service.autenticacao(email, senha).subscribe({
-        next: data => console.log(data),
-        error: error => console.error(error)
-      });
-
-      console.log("formulario valido", this.autenticacaoForm.value);
-    } else {
-      console.error("formulario invalido", this.autenticacaoForm.value);
-    }
-
-    this.router.navigateByUrl('/');
+        next: () => {
+          this.router.navigateByUrl('/');
+        },
+        error: (error) => {
+          this.messageAlertService.sendMessagesAlert([{
+            type: MessageAlertType.DANGER,
+            message: error.error.message
+          }]);
+        }
+      });      
+    }     
   }
 }

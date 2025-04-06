@@ -6,8 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-breadcrumb',
   imports: [RouterModule],
-  templateUrl: './breadcrumb.component.html',
-  styleUrl: './breadcrumb.component.css'
+  templateUrl: './breadcrumb.component.html'
 })
 export class BreadcrumbComponent implements OnInit {
 

@@ -10,6 +10,8 @@ import { LoteriaAlterarComponent } from './pages/loteria/loteria-alterar/loteria
 import { EntrarComponent } from './pages/entrar/entrar.component';
 import { InscricaoComponent } from './pages/inscreva-se/inscricao.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
+import { autenticacaoGuard } from './guards/autenticacao.guard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
     {
@@ -20,6 +22,7 @@ export const routes: Routes = [
     {
         path: 'loteria',
         component: LoteriaComponent,
+        canActivate: [autenticacaoGuard, adminGuard],
         title: 'Loteria',
         data: {
             description: 'Consulta de Loterias',
@@ -28,6 +31,7 @@ export const routes: Routes = [
     {
         path: 'loteria/novo',
         component: LoteriaCadastrarComponent,
+        canActivate: [autenticacaoGuard, adminGuard],
         title: 'Nova Loteria',
         data: {
             description: 'Cadastro de Loteria',
@@ -36,6 +40,7 @@ export const routes: Routes = [
     {
         path: 'loteria/alterar/:uuid',
         component: LoteriaAlterarComponent,
+        canActivate: [autenticacaoGuard, adminGuard],
         title: 'Alterar Loteria',
         data: {
             description: 'Alterar Loteria',
@@ -44,6 +49,7 @@ export const routes: Routes = [
     {
         path: 'concurso',
         component: ConcursoComponent,
+        canActivate: [autenticacaoGuard],
         title: 'Concurso',
         data: {
             description: 'Consultar Concurso',
@@ -52,6 +58,7 @@ export const routes: Routes = [
     {
         path: 'bolao',
         component: BolaoComponent,
+        canActivate: [autenticacaoGuard],
         title: 'Bolão',
         data: {
             description: 'Bolão',
@@ -60,6 +67,7 @@ export const routes: Routes = [
     {
         path: 'bolao/novo',
         component: BolaoCadastrarComponent,
+        canActivate: [autenticacaoGuard],
         title: 'Novo Bolão',
         data: {
             description: 'Cadastro de Bolão',
@@ -68,6 +76,7 @@ export const routes: Routes = [
     {
         path: 'bolao/alterar/:uuid',
         component: BolaoAlterarComponent,
+        canActivate: [autenticacaoGuard],
         title: 'Alterar bolão',
         data: {            
             description: 'Alterar Bolão',
@@ -95,6 +104,14 @@ export const routes: Routes = [
         title: 'Recuperar senha',
         data: {
             description: 'Recuperar senha',
+        }
+    },
+    {
+        path: 'pagina-nao-encontrada',
+        component: PaginaNaoEncontradaComponent,
+        title: 'Página não encontrada',
+        data: {
+            description: 'Error 404 - Página não encontrada',
         }
     },
     {

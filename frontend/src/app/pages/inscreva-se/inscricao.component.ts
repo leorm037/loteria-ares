@@ -49,9 +49,9 @@ export class InscricaoComponent implements OnInit {
   public inscrever() {
     if (this.inscricaoForm.valid) {
       const usuario = {
-        nome: this.inscricaoForm.get('nomeCompleto')?.value,
-        email: this.inscricaoForm.get('email')?.value,
-        plainPassword: this.inscricaoForm.get('senha')?.value
+        nome: this.inscricaoForm.value.nomeCompleto,
+        email: this.inscricaoForm.value.email,
+        plainPassword: this.inscricaoForm.value.senha,
       };
 
       this.service.save(usuario).subscribe({

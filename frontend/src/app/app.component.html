@@ -10,21 +10,40 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/loteria" routerLinkActive="active">
-              <i class="fa-solid fa-clover icon-rotate-45"></i> Loteria
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/concurso" routerLinkActive="active">
-              <i class="bi bi-suit-club-fill"></i> Concurso
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/bolao" routerLinkActive="active">
-              <i class="fa-regular fa-futbol"></i> Bolão
-            </a>
-          </li>
+          @if (isAdmin()) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/loteria" routerLinkActive="active">
+                <i class="fa-solid fa-clover icon-rotate-45"></i> Loteria
+              </a>
+            </li>
+          }
+          @if (usuario$ | async) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/concurso" routerLinkActive="active">
+                <i class="bi bi-suit-club-fill"></i> Concurso
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/bolao" routerLinkActive="active">
+                <i class="fa-regular fa-futbol"></i> Bolão
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> Perfil
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark border-loteria bg-loteria shadow dropdown-menu-lg-end">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" href="#" (click)="logout()">
+                    <i class="bi bi-door-open-fill"></i> Sair
+                  </a>
+                </li>
+              </ul>
+            </li>
+        } @else {
           <li class="nav-item">
             <a class="nav-link" routerLink="/entrar" routerLinkActive="active">
               <i class="bi bi-door-closed"></i> Entrar
@@ -35,6 +54,7 @@
               <i class="bi bi-person-plus"></i> Inscreva-se
             </a>
           </li>
+        }
         </ul>
       </div>
     </div>
