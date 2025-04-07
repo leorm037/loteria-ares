@@ -23,7 +23,8 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Assert\Email]
+    #[Assert\NotBlank(message: 'Informe o e-mail.')]
+    #[Assert\Email(message: 'Informe um endereço de e-mail válido.')]
     private ?string $email = null;
 
     /**
@@ -36,6 +37,8 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Informe a senha.')]
+    #[Assert\Length(min: 6, minMessage: 'Informe a senha com pelo menos {{ limit }} caracteres.')]
     private ?string $password = null;
 
     #[ORM\Column(length: 60)]

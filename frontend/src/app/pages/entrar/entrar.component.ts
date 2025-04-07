@@ -57,6 +57,11 @@ export class EntrarComponent implements OnInit {
           }]);
         }
       });      
-    }     
+    } else {
+      this.messageAlertService.sendMessagesAlert([{
+        type: MessageAlertType.WARNING,
+        message: "Preencha todos os campos corretamente."
+      }]);
+    }
   }
 }

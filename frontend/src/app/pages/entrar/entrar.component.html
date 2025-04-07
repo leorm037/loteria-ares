@@ -11,7 +11,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="username-icone"><i class="bi bi-envelope-at"></i></span>
                             <input formControlName="email" type="email" class="form-control" id="username" name="_username" value=""
-                                autocomplete="username" placeholder="name@example.com">
+                                autocomplete="username" placeholder="name@example.com" autofocus="autofocus" required="required">
                             @if (autenticacaoForm.get('email')?.touched && autenticacaoForm.get('email')?.errors?.['required']) {
                                 <div class="validator-invalid">Informe o e-mail cadastrado para entrar.</div>
                             }
@@ -26,7 +26,7 @@
                             <span class="input-group-text" id="password-icone"><i class="bi bi-key"></i></span>
                             <input formControlName="senha" type="password" class="form-control" id="password" name="_password"
                                 autocomplete="current-password" required="required">
-                                @if (autenticacaoForm.get('senha')?.errors?.['required']) {
+                                @if (autenticacaoForm.get('senha')?.touched && autenticacaoForm.get('senha')?.errors?.['required']) {
                                     <div class="validator-invalid">Informe a senha cadastrada para entrar.</div>
                                 }
                         </div>

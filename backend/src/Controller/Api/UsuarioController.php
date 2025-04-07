@@ -3,23 +3,26 @@
 namespace App\Controller\Api;
 
 use App\Entity\Usuario;
+use App\Exception\EntidadeException;
+use App\Exception\EntidadeNaoPocessadaException;
+use App\Exception\Exception;
+use App\Exception\TipoException;
 use App\Repository\UsuarioRepository;
-use Psr\Log\LoggerInterface;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class UsuarioController extends AbstractController {
+final class UsuarioController extends AbstractController
+{
 
     public function __construct(
-            private UsuarioRepository $repository,
-            private SerializerInterface $serializer,
-            private LoggerInterface $logger
-    ) {
+            private UsuarioRepository $repository
+    )
+    {
         
     }
 
@@ -28,36 +31,23 @@ final class UsuarioController extends AbstractController {
             Request $request,
             UserPasswordHasherInterface $userPasswordHash,
             ValidatorInterface $validator,
-    ): JsonResponse {
-        if ($request->getContentTypeFormat() != 'json') {
-            $this->logger->error("Requisição em formato ${$request->getContentTypeFormat()} é inválida para cadastro de usuário");
-            
-            return $this->json([
-                        'status' => 400,
-                        'errors' => 'Bad Request',
-                        'message' => 'Enviar a requisição em formato JSON'], 400);
-        }
-
+    ): JsonResponse
+    {
         $data = json_decode($request->getContent(), true);
 
         if (!isset($data['nome']) || !isset($data['email']) || !isset($data['plainPassword'])) {
-            $this->logger->error('Campos obrigatórios não informados para o cadastro de usuário');
-            
-            return $this->json([
-                        'status' => 422,
-                        'errors' => 'Unprocessable Entity',
-                        'message' => 'Informe os campos obrigatórios.'
-            ], 422);
+            throw new EntidadeException("Informe os campos obrigatórios.", null, ["nome: string", "email: string", "plainPassword: string"]);
         }
 
         $nome = $data['nome'];
         $email = $data['email'];
-        $planPassword = $data['plainPassword'];
+        $plainPassword = $data['plainPassword'];
 
         $usuario = new Usuario();
         $usuario
                 ->setNome($nome)
                 ->setEmail($email)
+                ->setPassword($plainPassword)
         ;
 
         $errors = $validator->validate($usuario);
@@ -69,27 +59,30 @@ final class UsuarioController extends AbstractController {
                 $errorMessages[] = $error->getMessage();
             }
 
-            return $this->json([
-                        'status' => 400,
-                        'error' => 'Bad Request',
-                        'message' => 'Validação dos campos falhou',
-                        'datail' => [$errorMessages]], 400);
+            throw new EntidadeException("Informe os campos obrigatórios.", null, $errorMessages);
         }
 
-        $hashPassword = $userPasswordHash->hashPassword($usuario, $planPassword);
-        
+        $hashPassword = $userPasswordHash->hashPassword($usuario, $plainPassword);
+
         $usuario
                 ->setPassword($hashPassword)
                 ->setRoles(['ROLE_USER'])
         ;
 
-        $this->repository->save($usuario);
+        try {
+            $this->repository->save($usuario);
+        } catch (UniqueConstraintViolationException $e) {
+            throw new EntidadeException("O e-mail \"{$usuario->getEmail()}\" já está cadastrado", $e);            
+        } catch (Exception $e) {
+            throw new EntidadeException($e->getMessage(), $e);
+        }
 
         return $this->json(['message' => "O usuário com o e-mail \"{$usuario->getEmail()}\" foi cadastrado com sucesso."], 201);
     }
 
     #[Route('/api/usuarios', name: 'app_api_usuario_get', methods: ['GET'])]
-    public function getUsuario(): JsonResponse {
+    public function getUsuario(): JsonResponse
+    {
         return $this->json([
                     'message' => 'USUARIO',
                     'path' => 'src/Controller/Api/UsuarioController.php',
@@ -97,7 +90,8 @@ final class UsuarioController extends AbstractController {
     }
 
     #[Route('/api/usuarios', name: 'app_api_usuario_update', methods: ['PATCH'])]
-    public function update(): JsonResponse {
+    public function update(): JsonResponse
+    {
         return $this->json([
                     'message' => 'UPDATE',
                     'path' => 'src/Controller/Api/UsuarioController.php',

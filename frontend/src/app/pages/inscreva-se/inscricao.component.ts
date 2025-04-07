@@ -8,6 +8,7 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { MessageAlertService } from '../../services/message-alert.service';
 import { UsuarioService } from '../../services/usuario.service';
+import { ErrorRequest } from '../../interfaces/error-request';
 
 @Component({
   selector: 'app-inscricao',
@@ -60,22 +61,24 @@ export class InscricaoComponent implements OnInit {
             type: MessageAlertType.SUCCESS,
             message: response.message
           }]);
+
+          this.router.navigateByUrl('/entrar');
         },
-        error: (error) => {
-          console.log(error);
-          this.messageAlertService.sendMessagesAlert([{
-            type: MessageAlertType.DANGER,
-            message: error
-          }]);
+        error: (e) => {
+          const error = e.error as ErrorRequest;
+          
+          for (const msg of error.detail) {
+            this.messageAlertService.sendMessagesAlert([{
+              type: MessageAlertType.DANGER,
+              message: msg
+            }]);
+          }
         }
       });
-
-      this.router.navigateByUrl('/entrar');
-
     } else {
       this.messageAlertService.sendMessagesAlert([{
         type: MessageAlertType.DANGER,
-        message: 'Preencha os campos conforme instruções.'
+        message: 'Preencha todos os campos corretamente.'
       }]);
     }
   }
