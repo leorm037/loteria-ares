@@ -21,10 +21,10 @@ final class Version20250307214547 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-                'CREATE TABLE `loteria_premio_receber` (
+            'CREATE TABLE `loteria_premio_receber` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `loteria_id` INT NOT NULL,
-            `qtd_dezenas_jodas` INT UNSIGNED NOT NULL,
+            `qtd_dezenas_jogadas` INT UNSIGNED NOT NULL,
             `qtd_dezenas_acertadas` INT UNSIGNED NOT NULL,
             `qtd_dezenas_premiadas` INT UNSIGNED NULL,
             `qtd_premios` INT UNSIGNED NULL,
@@ -35,8 +35,8 @@ final class Version20250307214547 extends AbstractMigration
             CONSTRAINT `fk_loteria_premio_receber_loteria`
               FOREIGN KEY (`loteria_id`)
               REFERENCES `loteria` (`id`)
-              ON DELETE NO ACTION
-              ON UPDATE NO ACTION)
+              ON DELETE CASCADE
+              ON UPDATE CASCADE)
             ENGINE = InnoDB'
         );
     }

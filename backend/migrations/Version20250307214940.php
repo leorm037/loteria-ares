@@ -21,15 +21,15 @@ final class Version20250307214940 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-                'CREATE TABLE `bolao` (
+            'CREATE TABLE `bolao` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `concurso_id` INT NOT NULL,
             `usuario_id` INT NOT NULL,
             `uuid` BINARY(16) NOT NULL,
             `nome` VARCHAR(120) NOT NULL,
+            `cota_valor` DECIMAL(10,2) UNSIGNED NULL,
             `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` TIMESTAMP NULL,
-            `cota_valor` DECIMAL(10,2) UNSIGNED NULL,
             PRIMARY KEY (`id`),
             INDEX `fk_bolao_concurso_idx` (`concurso_id` ASC),
             INDEX `fk_bolao_usuario_idx` (`usuario_id` ASC),
@@ -42,8 +42,8 @@ final class Version20250307214940 extends AbstractMigration
             CONSTRAINT `fk_bolao_usuario`
               FOREIGN KEY (`usuario_id`)
               REFERENCES `usuario` (`id`)
-              ON DELETE NO ACTION
-              ON UPDATE NO ACTION)
+              ON DELETE CASCADE
+              ON UPDATE CASCADE)
             ENGINE = InnoDB'
         );
     }

@@ -50,11 +50,18 @@ export class EntrarComponent implements OnInit {
         next: () => {
           this.router.navigateByUrl('/');
         },
-        error: (error) => {
-          this.messageAlertService.sendMessagesAlert([{
-            type: MessageAlertType.DANGER,
-            message: error.error.message
-          }]);
+        error: (e) => {
+          if (e?.statusText == "Unknown Error") {
+            this.messageAlertService.sendMessagesAlert([{
+              type: MessageAlertType.DANGER,
+              message: e.message
+            }]);
+          } else {
+            this.messageAlertService.sendMessagesAlert([{
+              type: MessageAlertType.DANGER,
+              message: e.error.message
+            }]);
+          }
         }
       });      
     } else {

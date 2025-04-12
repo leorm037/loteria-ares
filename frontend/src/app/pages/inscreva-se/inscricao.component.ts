@@ -65,13 +65,20 @@ export class InscricaoComponent implements OnInit {
           this.router.navigateByUrl('/entrar');
         },
         error: (e) => {
-          const error = e.error as ErrorRequest;
-          
-          for (const msg of error.detail) {
+          if(e?.statusText == "Unknown Error") {
             this.messageAlertService.sendMessagesAlert([{
               type: MessageAlertType.DANGER,
-              message: msg
+              message: e.message
             }]);
+          } else {
+            const error = e.error as ErrorRequest;
+            
+            for (const msg of error.detail) {
+              this.messageAlertService.sendMessagesAlert([{
+                type: MessageAlertType.DANGER,
+                message: msg
+              }]);
+            }
           }
         }
       });

@@ -3,18 +3,19 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BreadcrumbComponent } from './componentes/breadcrumb/breadcrumb.component';
 import { MessageAlertComponent } from "./componentes/message-alert/message-alert.component";
 import { AutenticacaoService } from './services/autenticacao.service';
-import { UsuarioAutenticado } from './interfaces/usuario-autenticado';
 import { AsyncPipe } from '@angular/common';
+import { LoadingComponent } from "./componentes/loading/loading.component";
 
 @Component({
   selector: '[app-root]',
   imports: [
-    RouterModule, 
-    RouterOutlet, 
-    BreadcrumbComponent, 
+    RouterModule,
+    RouterOutlet,
+    BreadcrumbComponent,
     MessageAlertComponent,
-    AsyncPipe
-  ],
+    AsyncPipe,
+    LoadingComponent
+],
   templateUrl: './app.component.html'
 })
 export class AppComponent {

@@ -21,7 +21,7 @@ final class Version20250307214317 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-                'CREATE TABLE `concurso` (
+            'CREATE TABLE `concurso` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `loteria_id` INT NOT NULL,
             `numero` INT NOT NULL,
@@ -39,8 +39,8 @@ final class Version20250307214317 extends AbstractMigration
             CONSTRAINT `fk_concurso_loteria`
               FOREIGN KEY (`loteria_id`)
               REFERENCES `loteria` (`id`)
-              ON DELETE NO ACTION
-              ON UPDATE NO ACTION)
+              ON DELETE CASCADE
+              ON UPDATE CASCADE)
             ENGINE = InnoDB'
         );
     }
