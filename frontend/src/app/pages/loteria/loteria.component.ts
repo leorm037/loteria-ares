@@ -4,7 +4,7 @@ import { LoteriaService } from '../../services/loteria.service';
 import { Loteria } from '../../interfaces/loteria';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable, throwError } from 'rxjs';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { MessageAlert } from '../../interfaces/message-alert';
@@ -42,14 +42,15 @@ export class LoteriaComponent implements OnInit {
           type: MessageAlertType.DANGER,
           message: 'Ops! Não foi possível recuperar a lista de loterias. Tente carregar novamente.'
         }]);
-        return EMPTY;
+        
+        return throwError(() => error);
       })
     );
 
     this.totalRegistros$ = this.loterias$.pipe(
       map(dados => dados.length),
       catchError((error) => {
-        return EMPTY;
+        return throwError(() => error);
       })
     );
 

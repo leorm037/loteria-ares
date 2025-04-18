@@ -28,8 +28,7 @@ export class MessageAlertService {
     this.messagesAlertSubject.next(null);
   }
 
-  public sendMessagesAlert(messagesAlert: MessageAlert[] | null, timeout: number = 60000) {
+  public sendMessagesAlert(messagesAlert: MessageAlert[] | null) {
     this.messagesAlertSubject.next(messagesAlert);
-    setTimeout(() => this.clear(), timeout);
   }
 }

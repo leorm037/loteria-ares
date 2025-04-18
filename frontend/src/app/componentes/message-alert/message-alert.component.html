@@ -1,8 +1,9 @@
 @for (message of messagesAlert; track message.message) {
-    <div class="alert alert-{{ message.type }}" role="alert">
+    <div class="alert alert-{{ message.type }} alert-dismissible" role="alert">
         @if (message.iconClass) {
             <i class="{{ message.iconClass }}" aria-hidden="true"></i> 
         }
         {{ message.message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
