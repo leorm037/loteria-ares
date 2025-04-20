@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { camposIguaisValidator } from '../../validators/campos-iguais-validator';
 import { MessageAlertType } from '../../enum/message-alert-type';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { MessageAlertService } from '../../services/message-alert.service';
@@ -12,7 +11,7 @@ import { ErrorRequest } from '../../interfaces/error-request';
 
 @Component({
   selector: 'app-inscricao',
-  imports: [ReactiveFormsModule, NgbAlertModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './inscricao.component.html'
 })
 export class InscricaoComponent implements OnInit {
@@ -38,7 +37,7 @@ export class InscricaoComponent implements OnInit {
     this.inscricaoForm = this.formBuilder.group({
       nomeCompleto: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      senha: [null, [Validators.required]],
+      senha: [null, [Validators.required, Validators.minLength(6)]],
       senhaConfirmar: [null, [Validators.required]]
     }, { validators: camposIguaisValidator('senha', 'senhaConfirmar') }
     );
@@ -65,14 +64,14 @@ export class InscricaoComponent implements OnInit {
           this.router.navigateByUrl('/entrar');
         },
         error: (e) => {
-          if(e?.statusText == "Unknown Error") {
+          if (e?.statusText == "Unknown Error") {
             this.messageAlertService.sendMessagesAlert([{
               type: MessageAlertType.DANGER,
               message: e.message
             }]);
           } else {
             const error = e.error as ErrorRequest;
-            
+
             for (const msg of error.detail) {
               this.messageAlertService.sendMessagesAlert([{
                 type: MessageAlertType.DANGER,

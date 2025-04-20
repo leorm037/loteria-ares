@@ -11,7 +11,7 @@
                             <label for="usuario_registro_nome" class="form-label required">Nome completo</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="nome-icon"><i class="bi bi-person"></i></span>
-                                <input id="usuario_registro_nome" formControlName="nomeCompleto" type="text" autofocus="autofocus" class="form-control" />
+                                <input id="usuario_registro_nome" formControlName="nomeCompleto" type="text" class="form-control" />
                                 @if (inscricaoForm.get('nomeCompleto')?.touched && inscricaoForm.get('nomeCompleto')?.errors?.['required']) {
                                     <div class="validator-invalid">Informe o nome completo.</div>
                                 }

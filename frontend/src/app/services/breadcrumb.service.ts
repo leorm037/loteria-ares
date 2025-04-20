@@ -8,10 +8,7 @@ import { Breadcrumb } from '../interfaces/breadcrumb';
 export class BreadcrumbService {
 
   private breadcrumbsSubject = new BehaviorSubject<Breadcrumb[] | null>(null);
-
   private breadcrumbsObject = this.breadcrumbsSubject.asObservable();
-
-  constructor() { }
 
   public getBreadcrumbs(): Observable<Breadcrumb[] | null> {
     return this.breadcrumbsObject;

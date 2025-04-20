@@ -4,10 +4,9 @@ import { LoteriaService } from '../../services/loteria.service';
 import { Loteria } from '../../interfaces/loteria';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { catchError, EMPTY, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Breadcrumb } from '../../interfaces/breadcrumb';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { MessageAlert } from '../../interfaces/message-alert';
 import { MessageAlertService } from '../../services/message-alert.service';
 import { MessageAlertType } from '../../enum/message-alert-type';
 

@@ -1,41 +1,47 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { EntrarComponent } from "./entrar.component";
+import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
+import { AutenticacaoService } from "../../services/autenticacao.service";
 import { BreadcrumbService } from "../../services/breadcrumb.service";
-import { LoteriaService } from "../../services/loteria.service";
 import { MessageAlertService } from "../../services/message-alert.service";
-import { LoteriaComponent } from "./loteria.component";
 
-describe('LoteriaComponent', () => {
-    let component: LoteriaComponent;
-    let fixture: ComponentFixture<LoteriaComponent>;
-    let loteriaService: LoteriaService;
+describe('EntrarComponent', () => {
     let breadcrumbService: BreadcrumbService;
+    let component: EntrarComponent;
+    let fixture: ComponentFixture<EntrarComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
+                ReactiveFormsModule,
                 HttpClientTestingModule,
-                RouterTestingModule,
-                NgbAlertModule
+                RouterTestingModule
             ],
             providers: [
-                LoteriaService,
+                FormBuilder,
+                AutenticacaoService,
                 BreadcrumbService,
                 MessageAlertService
             ]
         });
-
-        fixture = TestBed.createComponent(LoteriaComponent);
-        component = fixture.componentInstance;
-        loteriaService = TestBed.inject(LoteriaService);
         breadcrumbService = TestBed.inject(BreadcrumbService);
+        fixture = TestBed.createComponent(EntrarComponent);
+        component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
     it('Deve ser criado.', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('Deve ser criado o formulário de autenticação.', () => {
+        expect(component.autenticacaoForm.value).toEqual({
+            email: null,
+            senha: null,
+            lembrar: false
+        });
     });
 
     it('Deve ter o breadcrumb definido.', () => {

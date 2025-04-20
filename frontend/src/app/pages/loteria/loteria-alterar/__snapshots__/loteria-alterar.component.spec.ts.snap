@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoteriaComponent Deve ter o breadcrumb definido. 1`] = `
+Observable {
+  "source": BehaviorSubject {
+    "_value": [
+      {
+        "iconClass": "fa-solid fa-clover icon-rotate-45",
+        "texto": "Loteria",
+      },
+    ],
+    "closed": false,
+    "currentObservers": [],
+    "hasError": false,
+    "isStopped": false,
+    "observers": [],
+    "thrownError": null,
+  },
+}
+`;

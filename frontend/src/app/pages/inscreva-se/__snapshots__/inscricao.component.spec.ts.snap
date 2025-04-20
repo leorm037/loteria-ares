@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InscricaoComponent Deve ter o breadcrumb definido. 1`] = `
+Observable {
+  "source": BehaviorSubject {
+    "_value": [
+      {
+        "iconClass": "bi bi-person-add",
+        "texto": "Inscreva-se",
+      },
+    ],
+    "closed": false,
+    "currentObservers": [],
+    "hasError": false,
+    "isStopped": false,
+    "observers": [],
+    "thrownError": null,
+  },
+}
+`;

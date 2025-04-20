@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoteriaCadastrarComponent Deve conter o breadcrumb correto. 1`] = `
+Observable {
+  "source": BehaviorSubject {
+    "_value": [
+      {
+        "href": "/loteria",
+        "iconClass": "fa-solid fa-clover icon-rotate-45",
+        "texto": "Loteria",
+      },
+      {
+        "iconClass": "bi bi-plus",
+        "texto": "Novo",
+      },
+    ],
+    "closed": false,
+    "currentObservers": [],
+    "hasError": false,
+    "isStopped": false,
+    "observers": [],
+    "thrownError": null,
+  },
+}
+`;

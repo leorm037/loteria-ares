@@ -7,7 +7,7 @@
             </a>
         </li>
         @for (breadcrumb of breadcrumbs; track breadcrumb.texto) {
-            @if (breadcrumb.href == null) {
+            @if (breadcrumb.href === null) {
             <li class="breadcrumb-item active">
                 @if (breadcrumb.iconClass) {
                     <i class="{{ breadcrumb.iconClass }}" aria-hidden="true"></i>  
