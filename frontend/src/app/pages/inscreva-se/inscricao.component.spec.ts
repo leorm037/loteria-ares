@@ -6,6 +6,7 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { MessageAlertService } from '../../services/message-alert.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from '../../app.routes';
 
 describe('InscricaoComponent', () => {
     let breadcrumbService: BreadcrumbService;
@@ -27,7 +28,6 @@ describe('InscricaoComponent', () => {
             ]
         });
         breadcrumbService = TestBed.inject(BreadcrumbService);
-        
         fixture = TestBed.createComponent(InscricaoComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -81,4 +81,8 @@ describe('InscricaoComponent', () => {
         expect(breadcrumbService.getBreadcrumbs()).toMatchSnapshot();
     });
 
+    it('Deve ter a URL /inscricao para acessar o componente InscricaoComponent.', () => {
+        const route = routes.find(r => r.path === 'inscricao');
+        expect(route).toMatchSnapshot('rotaInscricao');
+    });
 });

@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`LoteriaComponent Deve ter a rota /loteria definida.: rotaLoteria 1`] = `
+{
+  "canActivate": [
+    [Function],
+    [Function],
+  ],
+  "component": [Function],
+  "data": {
+    "description": "Consulta de Loterias",
+  },
+  "path": "loteria",
+  "title": "Loteria",
+}
+`;
+
 exports[`LoteriaComponent Deve ter o breadcrumb definido. 1`] = `
 Observable {
   "source": BehaviorSubject {

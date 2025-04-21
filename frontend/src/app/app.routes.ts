@@ -25,7 +25,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard, adminGuard],
         title: 'Loteria',
         data: {
-            description: 'Consulta de Loterias',
+            description: 'Consulta de Loterias'
         }
     },
     {
@@ -34,7 +34,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard, adminGuard],
         title: 'Nova Loteria',
         data: {
-            description: 'Cadastro de Loteria',
+            description: 'Cadastro de Loteria'
         }
     },
     {
@@ -43,7 +43,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard, adminGuard],
         title: 'Alterar Loteria',
         data: {
-            description: 'Alterar Loteria',
+            description: 'Alterar Loteria'
         }
     },
     {
@@ -52,7 +52,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard],
         title: 'Concurso',
         data: {
-            description: 'Consultar Concurso',
+            description: 'Consultar Concurso'
         }
     },
     {
@@ -61,7 +61,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard],
         title: 'Bolão',
         data: {
-            description: 'Bolão',
+            description: 'Bolão'
         }
     },
     {
@@ -79,7 +79,7 @@ export const routes: Routes = [
         canActivate: [autenticacaoGuard],
         title: 'Alterar bolão',
         data: {            
-            description: 'Alterar Bolão',
+            description: 'Alterar Bolão'
         }
     },
     {
@@ -87,7 +87,7 @@ export const routes: Routes = [
         component: InscricaoComponent,
         title: 'Inscreva-se',
         data: {
-            description: 'Cadastro de novo usuário',
+            description: 'Cadastro de novo usuário'
         }
     },
     {
@@ -95,7 +95,7 @@ export const routes: Routes = [
         component: EntrarComponent,
         title: 'Entrar',
         data: {
-            description: 'Autenticação',
+            description: 'Autenticação'
         }
     },
     {
@@ -103,7 +103,7 @@ export const routes: Routes = [
         component: RecuperarSenhaComponent,
         title: 'Recuperar senha',
         data: {
-            description: 'Recuperar senha',
+            description: 'Recuperar senha'
         }
     },
     {
@@ -111,7 +111,7 @@ export const routes: Routes = [
         component: PaginaNaoEncontradaComponent,
         title: 'Página não encontrada',
         data: {
-            description: 'Error 404 - Página não encontrada',
+            description: 'Error 404 - Página não encontrada'
         }
     },
     {
@@ -119,7 +119,7 @@ export const routes: Routes = [
         component: PaginaNaoEncontradaComponent,
         title: 'Página não encontrada',
         data: {
-            description: 'Error 404 - Página não encontrada',
+            description: 'Error 404 - Página não encontrada'
         }
     }
 ];

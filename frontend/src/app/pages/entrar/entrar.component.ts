@@ -48,7 +48,8 @@ export class EntrarComponent implements OnInit {
 
       this.service.autenticacao(email, senha).subscribe({
         next: () => {
-          this.router.navigateByUrl('/');
+          const returnUrl = this.router.getCurrentNavigation()?.extras.state?.['returnUrl'] || '/';
+          this.router.navigateByUrl(returnUrl);
         },
         error: (e) => {
           if (e?.statusText == "Unknown Error") {

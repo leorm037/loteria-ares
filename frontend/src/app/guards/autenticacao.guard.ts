@@ -1,5 +1,4 @@
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { TokenService } from '../services/token.service';
 import { inject } from '@angular/core';
 import { AutenticacaoService } from '../services/autenticacao.service';
 

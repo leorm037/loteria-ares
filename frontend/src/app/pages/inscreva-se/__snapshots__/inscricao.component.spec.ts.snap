@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InscricaoComponent Deve ter a URL /inscricao para acessar o componente InscricaoComponent.: rotaInscricao 1`] = `
+{
+  "component": [Function],
+  "data": {
+    "description": "Cadastro de novo usuário",
+  },
+  "path": "inscricao",
+  "title": "Inscreva-se",
+}
+`;
+
 exports[`InscricaoComponent Deve ter o breadcrumb definido. 1`] = `
 Observable {
   "source": BehaviorSubject {

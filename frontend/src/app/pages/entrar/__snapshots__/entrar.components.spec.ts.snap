@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EntrarComponent Deve ter a URL /entrar definida.: rotaEntrar 1`] = `
+{
+  "component": [Function],
+  "data": {
+    "description": "Autenticação",
+  },
+  "path": "entrar",
+  "title": "Entrar",
+}
+`;
+
 exports[`EntrarComponent Deve ter o breadcrumb definido. 1`] = `
 Observable {
   "source": BehaviorSubject {

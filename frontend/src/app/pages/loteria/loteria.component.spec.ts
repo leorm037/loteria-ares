@@ -6,11 +6,11 @@ import { BreadcrumbService } from "../../services/breadcrumb.service";
 import { LoteriaService } from "../../services/loteria.service";
 import { MessageAlertService } from "../../services/message-alert.service";
 import { LoteriaComponent } from "./loteria.component";
+import { routes } from "../../app.routes";
 
 describe('LoteriaComponent', () => {
     let component: LoteriaComponent;
     let fixture: ComponentFixture<LoteriaComponent>;
-    let loteriaService: LoteriaService;
     let breadcrumbService: BreadcrumbService;
 
     beforeEach(() => {
@@ -26,10 +26,8 @@ describe('LoteriaComponent', () => {
                 MessageAlertService
             ]
         });
-
         fixture = TestBed.createComponent(LoteriaComponent);
         component = fixture.componentInstance;
-        loteriaService = TestBed.inject(LoteriaService);
         breadcrumbService = TestBed.inject(BreadcrumbService);
         fixture.detectChanges();
     });
@@ -41,4 +39,10 @@ describe('LoteriaComponent', () => {
     it('Deve ter o breadcrumb definido.', () => {
         expect(breadcrumbService.getBreadcrumbs()).toMatchSnapshot();
     });
+
+    it('Deve ter a rota /loteria definida.', () => {
+        const route = routes.find((r) => r.path === 'loteria');
+        expect(route).toMatchSnapshot('rotaLoteria');
+    });
+
 });
