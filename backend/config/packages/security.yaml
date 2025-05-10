@@ -26,7 +26,7 @@ security:
             jwt: ~
 
     access_control:
-        - { path: ^/api/login_check, roles: PUBLIC_ACCESS, methods: [POST] }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS, methods: [POST] }
         - { path: ^/api/usuarios, roles: PUBLIC_ACCESS, methods: [POST] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 

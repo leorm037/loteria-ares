@@ -9,7 +9,7 @@ export const autenticacaoGuard: CanActivateFn = (
   const autenticacaoService = inject(AutenticacaoService);
   const router = inject(Router);
 
-  if (autenticacaoService.hasUsuario()) {
+  if (autenticacaoService.isLoggedIn()) {
     return true;
   }
 

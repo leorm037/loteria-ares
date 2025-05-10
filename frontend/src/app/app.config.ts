@@ -4,7 +4,7 @@ import { provideRouter, TitleStrategy } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TituloService } from './services/titulo.service';
-import { autenticacaoInterceptor } from './interceptors/autenticacao.interceptor';
+import { autenticacaoInterceptor } from './core/interceptors/autenticacao.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {

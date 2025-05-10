@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AutenticacaoService } from '../../services/autenticacao.service';
+import { AutenticacaoService } from '../../core/services/autenticacao.service';
 import { AsyncPipe } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';

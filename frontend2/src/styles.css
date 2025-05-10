@@ -1,0 +1,65 @@
+:root {
+    --teal: #20c997;
+    --teal-background: #1aa179;
+    --teal-100: #d2f4ea;
+    --teal-200: #a6e9d5;
+    --teal-300: #79dfc1;
+    --teal-400: #4dd4ac;
+    --teal-500: #20c997;
+    --teal-600: #1aa179;
+    --teal-700: #13795b;
+    --teal-800: #0d503c;
+    --teal-900: #06281e;
+}
+
+.bg-loteria {
+    background-color: var(--teal-background)!important;
+}
+
+.bg-loteria-secondary {
+    background-color: var(--teal-100);
+}
+
+.text-loteria {
+    color: var(--teal-100)!important;
+}
+
+.navbar-nav {
+    --bs-nav-link-hover-color: #fff!important;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show, .nav-link {
+    color: var(--teal-200);
+}
+
+.nav-link.active {
+    color: #fff !important;
+}
+
+.navbar-bg-loteria {
+    color: var(--teal-100)!important;
+    border-color: var(--teal-100)!important;
+    background-color: transparent;
+}
+
+.border-loteria {
+    --bs-border-opacity: 1;
+    border-color: var(--teal-100)!important;
+}
+
+.card-header {
+    background-color: var(--teal-100)!important;
+}
+
+.card-footer {
+    background-color: var(--teal-100)!important;
+}
+
+.icon-rotate-45 {
+    transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    display: inline-block;
+}

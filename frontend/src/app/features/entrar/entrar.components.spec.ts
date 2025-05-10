@@ -3,7 +3,7 @@ import { EntrarComponent } from "./entrar.component";
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { AutenticacaoService } from "../../services/autenticacao.service";
+import { AutenticacaoService } from "../../core/services/autenticacao.service";
 import { BreadcrumbService } from "../../services/breadcrumb.service";
 import { MessageAlertService } from "../../services/message-alert.service";
 import { routes } from "../../app.routes";

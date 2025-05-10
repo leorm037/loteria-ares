@@ -7,13 +7,29 @@ import { LoteriaCadastrarComponent } from './pages/loteria/loteria-cadastrar/lot
 import { PaginaNaoEncontradaComponent } from './pages/error/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { BolaoAlterarComponent } from './pages/bolao/bolao-alterar/bolao-alterar.component';
 import { LoteriaAlterarComponent } from './pages/loteria/loteria-alterar/loteria-alterar.component';
-import { EntrarComponent } from './pages/entrar/entrar.component';
+import { EntrarComponent } from './features/entrar/entrar.component';
 import { InscricaoComponent } from './pages/inscreva-se/inscricao.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
-import { autenticacaoGuard } from './guards/autenticacao.guard';
-import { adminGuard } from './guards/admin.guard';
+import { autenticacaoGuard } from './core/guards/autenticacao.guard';
+import { adminGuard } from './core/guards/admin.guard';
+import { AuthLayoutComponent } from './layout/auth-layout/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        component: AuthLayoutComponent,
+        children: [
+            { 
+                path: 'entrar', 
+                loadComponent: () => import('').then(m => m)
+            },
+            {
+                path: 'recuperar-senha'
+            },
+            {
+                path: 'inscreva-se',
+            }
+    },
     {
         path: '',
         pathMatch: 'full',
