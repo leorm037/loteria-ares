@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { AppConfig } from './models/app-config.model';
+import { ErrorType } from './enums/error-type.enum';
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('APP_CONFIG');
 

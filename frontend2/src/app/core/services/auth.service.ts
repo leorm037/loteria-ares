@@ -17,6 +17,8 @@ export class AuthService {
   private http: HttpClient = inject(HttpClient);
   private tokenService: TokenService = inject(TokenService);
 
+  private readonly apiUrl = `${this.apiBaseUrl}/login_check`;
+
   public userSubject = new BehaviorSubject<UserAuth | null>(null);
 
   public user$ = this.userSubject.asObservable();
@@ -51,14 +53,12 @@ export class AuthService {
   }
 
   public authenticate(user: string, pass: string): Observable<HttpResponse<UserToken>> {
-    const apiBaseUrl = `${this.apiBaseUrl}/login_check`;
-    
     const authData = { 
       username: user, 
       password: pass
     };
 
-    return this.http.post<UserToken>(apiBaseUrl, authData, { observe: 'response' })
+    return this.http.post<UserToken>(this.apiUrl, authData, { observe: 'response' })
     .pipe(
       tap((response) => {
         const token: string = response.body?.token || '';

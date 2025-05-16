@@ -11,6 +11,6 @@ export const routes: Routes = [
     {
         path: '',
         component: LayoutMainComponent,
-        children: []
+        loadChildren: () => import('./features/loteria/loteria.routes').then(m => m.LOTERIA_ROUTES)
     }
 ];

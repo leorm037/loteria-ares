@@ -1,6 +1,7 @@
 import { Provider } from "@angular/core";
 import { environment } from "../../environments/environment.development";
 import { APP_CONFIG, API_BASE_URL, IS_PRODUCTION, LOGGER_FN } from "./tokens";
+import { ErrorType } from "./enums/error-type.enum";
 
 const version = environment.version;
 const api_base_url = environment.api_base_url;
@@ -29,8 +30,9 @@ export const CORE_PROVIDERS: Provider[] = [
             if (is_production) {
                 return () => { };
             } else {
-                return (message: string) => {
-                    console.log(message);
+                return (message: string): void => {
+                    const msg = `Desenvolimento: ${message}`;
+                    console.log(msg);
                 };
             }
         }

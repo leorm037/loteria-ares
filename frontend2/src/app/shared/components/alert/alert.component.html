@@ -1,0 +1,12 @@
+@for (alert of alerts; track $index) {
+    <div class="alert alert-{{ alert.type }} alert-dismissible d-flex align-items-center" role="alert">
+        @if (alert.title) {
+            <h4 class="alert-heading">{{ alert.title }}</h4>
+        }
+        @if (alert.iconClass) {
+            <i class="{{ alert.iconClass }} me-2" aria-hidden="true"></i> 
+        }
+        {{ alert.message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
