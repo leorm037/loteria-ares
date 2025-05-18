@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { API_BASE_URL, Loteria } from '@app/core';
-import { Observable } from 'rxjs';
+import { API_BASE_URL, Loteria, LoteriaPaginator } from '@app/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,12 @@ export class LoteriaService {
 
   private readonly apiUrl = `${this.apiBaseUrl}/loterias`;
 
-  public get(): Observable<Loteria[]> {
-    return this.httpClient.get<Loteria[]>(this.apiUrl);
+  public get(page: number = 1, pageSize: number = 10): Observable<LoteriaPaginator> {
+    const params = new HttpParams()
+      .set('_page', page)
+      .set('_per_page', pageSize);
+
+    return this.httpClient.get<LoteriaPaginator>(this.apiUrl, { params });
   }
 
   public save(loteria: Loteria): Observable<Loteria> {

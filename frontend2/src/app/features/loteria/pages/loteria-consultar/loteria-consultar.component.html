@@ -10,7 +10,7 @@
                 </a>
             </div>
         </div>
-    </div>        
+    </div>
     <div class="card-body">
         <table class="table table-striped table-hover table-bordered">
             <thead>
@@ -30,38 +30,63 @@
             </thead>
             <tbody class="table-group-divider">
                 @for (loteria of loterias; track loteria.id) {
-                    <tr>
-                        <td class="d-table-cell d-sm-none">
-                            <p>{{ loteria.nome }}</p>
-                            <p>{{ loteria.slugUrl }}</p>
-                            <p>{{ loteria.apiUrl }}</p>
-                        </td>
-                        <td class="d-none d-xl-table-cell">{{ loteria.nome }}</td>
-                        <td class="d-none d-xl-table-cell">{{ loteria.slugUrl }}</td>
-                        <td class="d-none d-xl-table-cell">{{ loteria.apiUrl }}</td>
-                        <td class="text-end d-none d-xl-table-cell">{{ (loteria.updatedAt ? loteria.updatedAt : loteria.createdAt) | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-                        <td class="text-center">
-                            <div class="dropdown dropstart">
-                                <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" routerLink="/loterias/{{ loteria.id }}/edit">Editar</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="d-table-cell d-sm-none">
+                        <p>{{ loteria.nome }}</p>
+                        <p>{{ loteria.slugUrl }}</p>
+                        <p>{{ loteria.apiUrl }}</p>
+                    </td>
+                    <td class="d-none d-xl-table-cell align-middle">{{ loteria.nome }}</td>
+                    <td class="d-none d-xl-table-cell align-middle">{{ loteria.slugUrl }}</td>
+                    <td class="d-none d-xl-table-cell align-middle">{{ loteria.apiUrl }}</td>
+                    <td class="text-end d-none d-xl-table-cell align-middle">{{ (loteria.updatedAt ? loteria.updatedAt :
+                        loteria.createdAt) | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td class="text-center align-middle">
+                        <div class="dropdown dropstart">
+                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" routerLink="/loterias/{{ loteria.id }}/edit">Editar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
                 } @empty {
-                    <tr>
-                        <td colspan="5" class="text-center">
-                            <div class="alert alert-info m-0" role="alert">
-                                Nenhum registro encontrado.
-                            </div>
-                        </td>
-                    </tr>
-                }   
+                <tr>
+                    <td colspan="5" class="text-center align-middle">
+                        <div class="alert alert-info m-0" role="alert">
+                            Nenhum registro encontrado.
+                        </div>
+                    </td>
+                </tr>
+                }
             </tbody>
         </table>
     </div>
-    <div class="card-footer"></div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-12 col-sm-3">
+                <select [(ngModel)]="pageSize" (change)="changePageSize()" class="form-select form-select-sm"
+                    aria-label="Quantidade de registro por página">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ngb-pagination class="d-flex justify-content-center m-0 p-0" size="sm"
+                    (pageChange)="changePage($event)" 
+                    [collectionSize]="collectionSize" 
+                    [(page)]="page"
+                    [pageSize]="pageSize" />
+            </div>
+            <div class="col-12 col-sm-3 mt-1 text-sm-end">
+                {{ collectionSize }} registro(s).
+            </div>
+        </div>
+    </div>
 </div>

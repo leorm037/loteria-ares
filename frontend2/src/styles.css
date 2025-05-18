@@ -55,6 +55,11 @@
     background-color: var(--teal-100)!important;
 }
 
+.pagination {
+    margin: 0;
+    padding: 0;
+}
+
 .icon-rotate-45 {
     transform:rotate(45deg);
     -webkit-transform:rotate(45deg);
