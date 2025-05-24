@@ -5,14 +5,17 @@ import { LoteriaCriarComponent } from "./pages/loteria-criar/loteria-criar.compo
 export const LOTERIA_ROUTES = [
     {
         path: 'loterias',
+        title: 'Loterias',
         component: LoteriaConsultarComponent
     },
     {
         path: 'loterias/new',
+        title: 'Nova Loteria',
         component: LoteriaCriarComponent
     },
     {
         path: 'loterias/:id/edit',
+        title: 'Alterar Loteria',
         component: LoteriaAlterarComponent
     }
 ];

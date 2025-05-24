@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService, LOGGER_FN } from '@app/core';
 import { AlertComponent } from "../../../../shared/components/alert/alert.component";
 import { Alert, AlertService, AlertType } from '@app/shared';
@@ -11,39 +11,31 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [ReactiveFormsModule, RouterModule, AlertComponent],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   
-  private router = inject(Router);
+  public form!: FormGroup;
 
-  private logger = inject(LOGGER_FN);
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private service: AuthService,
+    private alertService: AlertService
+  ) { }
 
-  private service: AuthService = inject(AuthService);
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ['leorm037@gmail.com', [Validators.required, Validators.email]],
+      senha: ['123456', [Validators.required]]
+    });
+  }
 
-  private fb: FormBuilder = inject(FormBuilder);
-
-  private alertService: AlertService = inject(AlertService);
-
-  public form: FormGroup = this.fb.group({
-    email: [null, [Validators.required]],
-    senha: [null, [Validators.required]]
-  });
-
-  public onSubmit() {
-    this.logger(`features.auth.pages.login: ${this.form.valid}`);
-    
+  public onSubmit() { 
     if (this.form.valid) {
       const email = this.form.value.email;
       const senha = this.form.value.senha;
 
       this.service.authenticate(email, senha).subscribe({
-        next: () => {
-          const returnUrl = this.router.getCurrentNavigation()?.extras.state?.['returnUrl'] || '/';
-
-          this.router.navigateByUrl(returnUrl);
-        },
         error: (e: HttpErrorResponse) => {
-          this.logger(`features.auth.pages.login: ${e.message}`);
-
           const alert: Alert = {
             type: AlertType.DANGER,
             message: "Não foi possível realizar a conexão. Tente novamente mais tarde."
@@ -53,9 +45,10 @@ export class LoginComponent {
         }
       });
       
+      const returnUrl = this.router.getCurrentNavigation()?.extras.state?.['returnUrl'] || '/';
+
+      this.router.navigateByUrl(returnUrl);
       
-    } else {
-      this.logger(`features.auth.pages.login: Formulario invádilido`);
     }
   };
 

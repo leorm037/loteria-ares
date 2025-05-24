@@ -85,6 +85,13 @@ ou
 npm run test -- --watch
 ```
 
+### Gerar chaves para servidor HTTPS
+
+```bash
+openssl req -x509 -newkey rsa:2048 -keyout ssl-keys/localhost.key -out ssl-keys/localhost.crt -days 365 -nodes
+```
+
+
 ### Development server
 
 To start a local development server, run:

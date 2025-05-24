@@ -1,0 +1,19 @@
+@if (link()) {
+<a [ngClass]="effectiveActionType" [routerLink]="link()">
+    @if (iconClassCss()) {
+    <i [class]="iconClassCss()"></i>
+    }
+    @if (name()) {
+    {{ name()}}
+    }
+</a>
+} @else {
+<button [type]="buttonType()" [ngClass]="effectiveActionType" (click)="onClick()">
+    @if (iconClassCss()) {
+    <i [class]="iconClassCss()"></i>
+    }
+    @if (name()) {
+    {{ name() }}
+    }
+</button>
+}

@@ -22,6 +22,8 @@ class LoteriaRepository extends ServiceEntityRepository
      */
     public function findAllOrderByNome(): ?array
     {
+        
+        
         return $this->createQueryBuilder('l')
                         ->orderBy('l.nome', 'ASC')
                         ->getQuery()

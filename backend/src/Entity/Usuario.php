@@ -3,20 +3,19 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use DateTime;
 use DateTimeImmutable;
-use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UsuarioRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[ORM\HasLifecycleCallbacks]
 class Usuario extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,15 +40,17 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
     #[Assert\Length(min: 6, minMessage: 'Informe a senha com pelo menos {{ limit }} caracteres.')]
     private ?string $password = null;
 
-    #[ORM\Column(length: 60)]
-    #[Assert\NotBlank(message: 'Informe o nome completo.')]
-    private ?string $nome = null;
-
+    #[ORM\Column]
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     protected ?DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(nullable: true)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    protected ?DateTimeInterface $updatedAt = null;
+    protected ?DateTime $updatedAt = null;
+
+    #[ORM\Column(length: 60)]
+    #[Assert\NotBlank(message: 'Informe o nome completo.')]
+    private ?string $nome = null;
 
     public function getId(): ?int
     {
@@ -80,8 +81,6 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
 
     /**
      * @see UserInterface
-     *
-     * @return list<string>
      */
     public function getRoles(): array
     {
@@ -126,18 +125,6 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
         // $this->plainPassword = null;
     }
 
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(string $nome): static
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -150,15 +137,28 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeInterface
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): static
+    public function setUpdatedAt(?DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(string $nome): static
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
+
 }

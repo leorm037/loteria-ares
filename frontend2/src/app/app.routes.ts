@@ -1,8 +1,15 @@
 import { Routes } from '@angular/router';
 import { LayoutAuthComponent } from './layout/layout-auth/layout-auth.component';
 import { LayoutMainComponent } from './layout/layout-main/layout-main.component';
+import { authGuard } from '@app/core';
+import { LOTERIA_ROUTES } from './features/loteria/loteria.routes';
 
 export const routes: Routes = [
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'loterias'
+    },
     {
         path: '',
         component: LayoutAuthComponent,
@@ -11,6 +18,8 @@ export const routes: Routes = [
     {
         path: '',
         component: LayoutMainComponent,
-        loadChildren: () => import('./features/loteria/loteria.routes').then(m => m.LOTERIA_ROUTES)
+        children: [
+            ...LOTERIA_ROUTES
+        ]
     }
 ];

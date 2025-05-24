@@ -6,16 +6,14 @@ import { jwtDecode } from "jwt-decode";
 import { UserToken } from '../models/user-token.model';
 import { UserAuth } from '../models/user-auth.model';
 import { API_BASE_URL, LOGGER_FN } from '../tokens';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private logger = inject(LOGGER_FN);
   private apiBaseUrl = inject(API_BASE_URL);
-  private http: HttpClient = inject(HttpClient);
-  private tokenService: TokenService = inject(TokenService);
 
   private readonly apiUrl = `${this.apiBaseUrl}/login_check`;
 
@@ -23,16 +21,14 @@ export class AuthService {
 
   public user$ = this.userSubject.asObservable();
 
+  constructor(
+    private httpClient: HttpClient,
+    private tokenService: TokenService,
+    private router: Router
+  ) {}
+
   public isLoggedIn(): boolean {
-    const exp = this.userSubject.value?.exp || 0;
-    const now = Math.floor(Date.now() / 1000);
-
-    if (exp > now) {
-      return true;
-    }
-
-    this.logOut();
-    return false;
+    return this.tokenService.hasToken();
   }
 
   public hasRole(role: string): boolean {
@@ -43,11 +39,9 @@ export class AuthService {
     return false;
   }
 
-  public decodificarToken(): void {
+  private decodificarToken(): void {
     const token = this.tokenService.getToken();
     const userAuthenticated = jwtDecode(token) as UserAuth;
-
-    this.logger(`core.AuthService.decodificarToken: ${userAuthenticated}`);
 
     this.userSubject.next(userAuthenticated);
   }
@@ -58,7 +52,7 @@ export class AuthService {
       password: pass
     };
 
-    return this.http.post<UserToken>(this.apiUrl, authData, { observe: 'response' })
+    return this.httpClient.post<UserToken>(this.apiUrl, authData, { observe: 'response' })
     .pipe(
       tap((response) => {
         const token: string = response.body?.token || '';
@@ -68,9 +62,14 @@ export class AuthService {
     );
   }
 
+  public getToken(): string {
+    return this.tokenService.getToken();
+  }
+
   public logOut(): void {
     this.tokenService.remove();
     this.userSubject.next(null);
+    this.router.navigateByUrl('/login');
   }
 
 }

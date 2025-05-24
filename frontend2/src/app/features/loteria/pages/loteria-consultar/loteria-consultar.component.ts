@@ -1,15 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LOGGER_FN, Loteria, LoteriaPaginator } from '@app/core';
+import { LOGGER_FN, Loteria } from '@app/core';
 import { LoteriaService } from '../../services/loteria.service';
 import { RouterModule } from '@angular/router';
-import { DatePipe, SlicePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { Breadcrumb, BreadcrumbService } from '@app/shared';
+import { Breadcrumb, BreadcrumbService, ButtonComponent } from '@app/shared';
+
 
 @Component({
   selector: 'app-loteria-consultar',
-  imports: [RouterModule, DatePipe, SlicePipe, NgbPaginationModule, FormsModule],
+  imports: [RouterModule, DatePipe, NgbPaginationModule, FormsModule, ButtonComponent],
   templateUrl: './loteria-consultar.component.html',
   styleUrl: './loteria-consultar.component.css'
 })

@@ -5,9 +5,7 @@
                 <h1 class="h4 m-0"><i class="fa-solid fa-clover icon-rotate-45"></i> Loteria</h1>
             </div>
             <div>
-                <a routerLink="/loterias/new" class="btn btn-secondary btn-sm bg-gradient shadow-sm">
-                    <i class="bi bi-plus"></i> Novo
-                </a>
+                <app-button name="Novo" link="/loterias/new" iconClassCss="bi bi-plus" actionType="btn-secondary"></app-button>
             </div>
         </div>
     </div>
@@ -31,10 +29,11 @@
             <tbody class="table-group-divider">
                 @for (loteria of loterias; track loteria.id) {
                 <tr>
-                    <td class="d-table-cell d-sm-none">
-                        <p>{{ loteria.nome }}</p>
-                        <p>{{ loteria.slugUrl }}</p>
-                        <p>{{ loteria.apiUrl }}</p>
+                    <td class="d-table-cell d-xl-none">
+                        <p><strong>Loteria</strong><br/>{{ loteria.nome }}</p>
+                        <p><strong>Slug</strong><br/>{{ loteria.slugUrl }}</p>
+                        <p><strong>API</strong><br/>{{ loteria.apiUrl }}</p>
+                        <p><strong>Atualização</strong><br/>{{ (loteria.updatedAt ? loteria.updatedAt : loteria.createdAt) | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
                     </td>
                     <td class="d-none d-xl-table-cell align-middle">{{ loteria.nome }}</td>
                     <td class="d-none d-xl-table-cell align-middle">{{ loteria.slugUrl }}</td>
@@ -43,12 +42,13 @@
                         loteria.createdAt) | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                     <td class="text-center align-middle">
                         <div class="dropdown dropstart">
-                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                            <button class="btn btn-secondary bg-gradient btn-sm shadow" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="bi bi-three-dots"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" routerLink="/loterias/{{ loteria.id }}/edit">Editar</a>
+                                <li>
+                                    <app-button name="Editar" actionType="dropdown-item" iconClassCss="bi bi-pencil-fill" link="/loterias/{{ loteria.id }}/edit"></app-button>
                                 </li>
                             </ul>
                         </div>

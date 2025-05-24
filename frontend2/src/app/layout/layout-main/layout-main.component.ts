@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FooterComponent, HeaderComponent } from '@app/shared';
+import { AlertComponent, FooterComponent, HeaderComponent, LoadingComponent, ToastMessage, ToastService } from '@app/shared';
 import { RouterModule } from '@angular/router';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-layout-main',
-  imports: [HeaderComponent, FooterComponent, RouterModule],
+  imports: [HeaderComponent, FooterComponent, RouterModule, NgbToastModule, AlertComponent, LoadingComponent],
   templateUrl: './layout-main.component.html',
   styles: [
     `
@@ -17,5 +18,11 @@ import { RouterModule } from '@angular/router';
   ]
 })
 export class LayoutMainComponent {
+
+  public toasts: ToastMessage[] = [];
+  
+  public constructor(
+    public toastService: ToastService,
+  ) { }
 
 }

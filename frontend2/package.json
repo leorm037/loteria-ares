@@ -2,12 +2,19 @@
   "name": "loteria",
   "version": "0.0.0",
   "scripts": {
+    "prestart": "npx figlet 'Loteria : Start'",
+    "predb": "npx figlet 'Loteria : fake backend'",
+    "prelint": "npx figlet 'Loteria : Lint'",
+    "pretest": "npx figlet 'Loteria : Test'",
+    "prebuild": "npx figlet 'Loteria : Build'",
+    "prewatch": "npx figlet 'Loteria : Watch'",
     "ng": "ng",
-    "start": "ng serve",
+    "db": "json-server --watch db.json --port 3000",
+    "start": "ng serve --ssl true --ssl-key ssl-keys/localhost.key --ssl-cert ssl-keys/localhost.crt",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "db": "json-server --watch db.json --port 3000"
+    "test:run": "ng jest",
+    "test:coverage": "npx jest --coverage"
   },
   "private": true,
   "dependencies": {

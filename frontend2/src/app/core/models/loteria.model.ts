@@ -3,8 +3,8 @@ export interface Loteria {
     nome: string;
     apiUrl: string;
     slugUrl: string;
-    apostas: Array<number>;
-    dezenas: Array<number>;
+    apostas: string;
+    dezenas: string;
     createdAt: string,
     updatedAt: string
 }
