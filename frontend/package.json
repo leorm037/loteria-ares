@@ -1,21 +1,20 @@
 {
   "name": "loteria",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "scripts": {
     "prestart": "npx figlet 'Loteria : Start'",
-    "predb": "npx figlet 'Loteria : DB'",
+    "predb": "npx figlet 'Loteria : fake backend'",
     "prelint": "npx figlet 'Loteria : Lint'",
     "pretest": "npx figlet 'Loteria : Test'",
     "prebuild": "npx figlet 'Loteria : Build'",
     "prewatch": "npx figlet 'Loteria : Watch'",
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --ssl true --ssl-key ssl-keys/localhost.key --ssl-cert ssl-keys/localhost.crt",
-    "db": "npx json-server db.json",
+    "db": "json-server --watch db.json --port 3000",
+    "start": "ng serve --ssl true --ssl-key ssl-keys/localhost.key --ssl-cert ssl-keys/localhost.crt",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "npx jest",
-    "test:coverage": "npx jest --coverage",
-    "lint": "ng lint"
+    "test:run": "ng jest",
+    "test:coverage": "npx jest --coverage"
   },
   "private": true,
   "dependencies": {
@@ -28,8 +27,8 @@
     "@angular/router": "^19.2.0",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
+    "bootstrap": "^5.3.6",
+    "bootstrap-icons": "^1.13.1",
     "jquery": "^3.7.1",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
@@ -37,19 +36,17 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-builders/jest": "^19.0.1",
-    "@angular-devkit/build-angular": "^19.2.0",
-    "@angular/cli": "^19.2.2",
+    "@angular-devkit/build-angular": "^19.2.10",
+    "@angular/cli": "^19.2.10",
     "@angular/compiler-cli": "^19.2.0",
     "@angular/localize": "^19.2.0",
-    "@briebug/jest-schematic": "^6.0.0",
+    "@types/jasmine": "~5.1.0",
     "@types/jest": "^29.5.14",
-    "angular-eslint": "19.3.0",
-    "eslint": "^9.23.0",
-    "figlet": "^1.8.0",
+    "figlet": "^1.8.1",
     "jest": "^29.7.0",
+    "jest-preset-angular": "^14.5.5",
     "json-server": "^1.0.0-beta.3",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "8.27.0"
+    "ts-jest": "^29.3.2",
+    "typescript": "~5.7.2"
   }
 }

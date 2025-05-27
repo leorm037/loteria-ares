@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class Usuario extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -40,11 +41,9 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
     #[Assert\Length(min: 6, minMessage: 'Informe a senha com pelo menos {{ limit }} caracteres.')]
     private ?string $password = null;
 
-    #[ORM\Column]
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     protected ?DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     protected ?DateTime $updatedAt = null;
 
@@ -160,5 +159,4 @@ class Usuario extends AbstractEntity implements UserInterface, PasswordAuthentic
 
         return $this;
     }
-
 }

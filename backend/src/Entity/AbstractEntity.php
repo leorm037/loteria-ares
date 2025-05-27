@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Helper\DateTimeHelper;
-use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Uid\Uuid;
 
 abstract class AbstractEntity
 {
@@ -12,6 +13,7 @@ abstract class AbstractEntity
     #[ORM\PrePersist]
     public function prePersist(): void
     {
+        $this->slugUrl();
         $this->createdAt();
         $this->generateUuid();
     }
@@ -19,6 +21,7 @@ abstract class AbstractEntity
     #[ORM\PreUpdate]
     public function preUpdate(): void
     {
+        $this->slugUrl();
         $this->updateAt();
     }
 
@@ -40,6 +43,14 @@ abstract class AbstractEntity
     {
         if (property_exists(static::class, 'uuid') && null === $this->uuid) {
             $this->uuid = Uuid::v4();
+        }
+    }
+
+    private function slugUrl(): void
+    {
+        if (property_exists(static::class, 'slugUrl')) {
+            $slugger = new AsciiSlugger();
+            $this->slugUrl = strtolower($slugger->slug($this->getNome())); /** @phpstan-ignore method.notFound */
         }
     }
 }

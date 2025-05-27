@@ -1,18 +1,16 @@
-import { CanActivateChildFn, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
-import { LOGGER_FN } from '../tokens';
+import { CanActivateFn, Router } from '@angular/router';
+import { AutenticacaoService } from '../services/autenticacao.service';
 
-export const adminGuard: CanActivateChildFn = (childRoute, state) => {
-  
-  const service = inject(AuthService);
+export const adminGuard: CanActivateFn = () => {
+  const autenticacaoService = inject(AutenticacaoService);
   const router = inject(Router);
 
-  if (!service.hasRole('ROLE_ADMIN')) {
-    router.navigateByUrl('/');
-    
-    return false;
+  if (autenticacaoService.hasRole('ROLE_ADMIN')) {
+    return true;
   }
 
-  return true;
+  router.navigate(['/']);
+
+  return false;
 };

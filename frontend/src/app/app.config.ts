@@ -2,24 +2,27 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, TitleStrategy } from '@angular/router';
 
 import { routes } from './app.routes';
+import { CORE_PROVIDERS } from './core/core.providers';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { TituloService } from './services/titulo.service';
-import { autenticacaoInterceptor } from './core/interceptors/autenticacao.interceptor';
-import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { authInterceptor, loadingInterceptor, TitleService } from '@app/core';
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
     provideHttpClient(
       withInterceptors([
-        autenticacaoInterceptor,
+        authInterceptor,
         loadingInterceptor
       ])
     ),
+    provideRouter(routes),
+    ...CORE_PROVIDERS,
     {
       provide: TitleStrategy,
-      useClass: TituloService
+      useClass: TitleService
     }
-  ]
+  ],
 };
+

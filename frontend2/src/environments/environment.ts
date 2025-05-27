@@ -1,5 +1,5 @@
 export const environment = {
-        version: '1.0.0',
-        api_base_url: 'http://localhost:8080/api',
-        is_production: true
+    apiUrl: "http://localhost:3000/api",
+    siteName: "Loteria",
+    siteVersion: "1.0.0"
 };

@@ -1,150 +1,52 @@
 {
-  "loterias": [
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174000",
-      "nome": "Mega-sena 01",
-      "apiUrl": "https://api.loterias.com.br/mega-sena",
-      "slugUrl": "mega-sena",
-      "apostas": "6,7,8,9,10,11,12,13,14,15",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60",
-      "createdAt": "2025-05-20T19:43:44.110Z",
-      "updatedAt": "2025-05-20T19:43:58.469Z"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174001",
-      "nome": "Lotofácil 01",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2025-05-20T19:57:15.676Z"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174002",
-      "nome": "Lotofácil 02",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2025-05-20T19:59:55.313Z"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174003",
-      "nome": "Lotofácil 3",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174004",
-      "nome": "Lotofácil 4",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174005",
-      "nome": "Lotofácil 5",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174006",
-      "nome": "Lotofácil 6",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174007",
-      "nome": "Lotofácil 7",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174008",
-      "nome": "Lotofácil 8",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174009",
-      "nome": "Lotofácil 9",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174010",
-      "nome": "Lotofácil 10",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174011",
-      "nome": "Lotofácil 11",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174012",
-      "nome": "Lotofácil 12",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
-      "createdAt": "2024-06-23 14:03:49",
-      "updatedAt": "2024-06-23 15:03:49"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174009",
-      "nome": "Lotofácil 09",
-      "apiUrl": "https://api.loterias.com.br/lotofacil",
-      "slugUrl": "lotofacil",
-      "apostas": "15,16,17,18,19,20,21,22,23,24,25",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25"
-    },
-    {
-      "id": "123e4567-e89b-12d3-a456-426614174000",
-      "nome": "Mega-sena 01",
-      "apiUrl": "https://api.loterias.com.br/mega-sena",
-      "slugUrl": "mega-sena",
-      "apostas": "6,7,8,9,10,11,12,13,14,15",
-      "dezenas": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60"
-    }
-  ]
+    "loterias": [
+        {
+            "id": "1",
+            "nome": "Mega-sena",
+            "uuid": "01904569-087e-7b66-aaf6-99f06e120feb",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena",
+            "slug_url": "mega-sena",
+            "aposta": "6,7,8,9,10,11,12,13,14,15",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60",
+            "created_at": "2024-06-23 14:03:49",
+            "updated_at": ""
+        },
+        {
+            "id": "2",
+            "nome": "+Milionária",
+            "uuid": "019056d9-c2c8-70fa-9d61-859c730b739a",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/maismilionaria",
+            "slug_url": "milionaria",
+            "aposta": "06,07,08,09,10,11,12",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50",
+            "created_at": "2024-06-23 15:03:49",
+            "updated_at": ""
+        },{
+            "id": "3",
+            "nome": "Lotofácil",
+            "uuid": "0190e53a-58f4-7c00-9ee5-44b8da56fa7d",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil",
+            "slug_url": "lotofacil",
+            "aposta": "15,16,17,18,19,20",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+            "created_at": "2024-06-23 16:03:49",
+            "updated_at": ""
+        },{
+            "id": "4",
+            "nome": "Quina",
+            "uuid": "019056d9-c2c8-70fa-9d61-859c7358f5c7",
+            "api_url": "https://servicebus2.caixa.gov.br/portaldeloterias/api/quina",
+            "slug_url": "quina",
+            "aposta": "06,07,08,09,10,11,12",
+            "dezenas": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25",
+            "created_at": "2024-06-23 16:13:49",
+            "updated_at": ""
+        }
+    ],
+    "concursos": [],
+    "usuarios": [],
+    "boloes": [],
+    "apostadores": [],
+    "apostas": [],
+    "arquivos": []
 }
