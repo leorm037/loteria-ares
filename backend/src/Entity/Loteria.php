@@ -1,10 +1,17 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Entity;
 
 use App\Repository\LoteriaRepository;
-use DateTime;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +22,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: LoteriaRepository::class)]
 class Loteria extends AbstractEntity
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -35,19 +41,21 @@ class Loteria extends AbstractEntity
     #[ORM\Column(length: 255)]
     protected ?string $slugUrl = null;
 
+    /** @var array<int,int> $apostas */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de dezenas permitidas para apostar.')]
     private array $apostas = [];
 
+    /** @var array<int,int> $dezenas */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe as dezenas que podem ser apostadas.')]
     private array $dezenas = [];
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
-    protected ?DateTimeImmutable $createdAt = null;
+    protected ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    protected ?DateTime $updatedAt = null;
+    protected ?\DateTime $updatedAt = null;
 
     /**
      * @var Collection<int, LoteriaPremio>
@@ -55,10 +63,17 @@ class Loteria extends AbstractEntity
     #[ORM\OneToMany(targetEntity: LoteriaPremio::class, mappedBy: 'loteria', orphanRemoval: true)]
     private Collection $loteriaPremios;
 
+    /**
+     * @var Collection<int, Concurso>
+     */
+    #[ORM\OneToMany(targetEntity: Concurso::class, mappedBy: 'loteria', orphanRemoval: true)]
+    private Collection $concursos;
+
     public function __construct()
     {
         $this->dezenasJogadas = new ArrayCollection();
         $this->loteriaPremios = new ArrayCollection();
+        $this->concursos = new ArrayCollection();
     }
 
     public function getSlugUrl(): ?string
@@ -112,11 +127,17 @@ class Loteria extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @return array<int,int>
+     */
     public function getApostas(): array
     {
         return $this->apostas;
     }
 
+    /**
+     * @param array<int,int> $apostas
+     */
     public function setApostas(array $apostas): static
     {
         $this->apostas = $apostas;
@@ -124,11 +145,17 @@ class Loteria extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @return array<int,int>
+     */
     public function getDezenas(): array
     {
         return $this->dezenas;
     }
 
+    /**
+     * @param array<int,int> $dezenas
+     */
     public function setDezenas(array $dezenas): static
     {
         $this->dezenas = $dezenas;
@@ -136,24 +163,24 @@ class Loteria extends AbstractEntity
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTime $updatedAt): static
+    public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
@@ -190,4 +217,33 @@ class Loteria extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @return Collection<int, Concurso>
+     */
+    public function getConcursos(): Collection
+    {
+        return $this->concursos;
+    }
+
+    public function addConcurso(Concurso $concurso): static
+    {
+        if (!$this->concursos->contains($concurso)) {
+            $this->concursos->add($concurso);
+            $concurso->setLoteria($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConcurso(Concurso $concurso): static
+    {
+        if ($this->concursos->removeElement($concurso)) {
+            // set the owning side to null (unless already changed)
+            if ($concurso->getLoteria() === $this) {
+                $concurso->setLoteria(null);
+            }
+        }
+
+        return $this;
+    }
 }

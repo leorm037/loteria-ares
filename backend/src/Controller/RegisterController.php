@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Usuario;
@@ -8,7 +17,6 @@ use App\Exception\LoteriaException;
 use App\Form\UsuarioType;
 use App\Repository\UsuarioRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormErrorIterator;
@@ -20,21 +28,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class RegisterController extends AbstractController
 {
-
     public function __construct(
-            private UsuarioRepository $repository
-    )
-    {
-        
+        private UsuarioRepository $repository,
+    ) {
     }
 
     #[Route('/api/register', name: 'app_api_register', methods: ['POST'])]
     public function save(
-            Request $request,
-            UserPasswordHasherInterface $userPasswordHash,
-            ValidatorInterface $validator
-    ): JsonResponse
-    {
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHash,
+        ValidatorInterface $validator,
+    ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
         $usuario = new Usuario();
@@ -46,7 +50,7 @@ final class RegisterController extends AbstractController
         if (!$type->isValid()) {
             $errorMessages = [];
 
-            /** @var FormErrorIterator $errors */
+            /** @var FormErrorIterator<FormError> $errors */
             $errors = $type->getErrors(true);
 
             /** @var FormError $error */
@@ -54,7 +58,7 @@ final class RegisterController extends AbstractController
                 $errorMessages[] = $error->getMessage();
             }
 
-            throw new EntityException("Informe os campos obrigatórios", $errorMessages);
+            throw new EntityException('Informe os campos obrigatórios', $errorMessages);
         }
 
         $hashPassword = $userPasswordHash->hashPassword($usuario, $usuario->getPassword());
@@ -68,13 +72,13 @@ final class RegisterController extends AbstractController
             $this->repository->save($usuario);
         } catch (UniqueConstraintViolationException $e) {
             throw new EntityException("O e-mail '{$usuario->getEmail()}' já está cadastrado.", [$e->getMessage()]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new LoteriaException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $this->json([
-                    'code' => 201,
-                    'message' => "O usuário com o e-mail '{$usuario->getEmail()}' foi cadastrado com sucesso."
-                        ], 201);
+            'code' => 201,
+            'message' => "O usuário com o e-mail '{$usuario->getEmail()}' foi cadastrado com sucesso.",
+        ], 201);
     }
 }

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Entity;
 
 use App\Helper\DateTimeHelper;
@@ -9,7 +18,6 @@ use Symfony\Component\Uid\Uuid;
 
 abstract class AbstractEntity
 {
-
     #[ORM\PrePersist]
     public function prePersist(): void
     {
@@ -50,7 +58,7 @@ abstract class AbstractEntity
     {
         if (property_exists(static::class, 'slugUrl')) {
             $slugger = new AsciiSlugger();
-            $this->slugUrl = strtolower($slugger->slug($this->getNome())); /** @phpstan-ignore method.notFound */
+            $this->slugUrl = strtolower($slugger->slug($this->getNome())); /* @phpstan-ignore method.notFound */
         }
     }
 }

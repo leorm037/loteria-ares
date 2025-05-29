@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Usuario;
@@ -14,7 +23,6 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Usuario::class);

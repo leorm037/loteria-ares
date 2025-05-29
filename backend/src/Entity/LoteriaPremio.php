@@ -1,10 +1,17 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Entity;
 
 use App\Repository\LoteriaPremioRepository;
-use DateTime;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -40,10 +47,10 @@ class LoteriaPremio extends AbstractEntity
     private ?int $premios = null;
 
     #[ORM\Column]
-    protected ?DateTimeImmutable $createdAt = null;
+    protected ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    protected ?DateTime $updatedAt = null;
+    protected ?\DateTime $updatedAt = null;
 
     #[ORM\Column(type: 'uuid')]
     protected ?Uuid $uuid = null;
@@ -113,24 +120,24 @@ class LoteriaPremio extends AbstractEntity
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTime $updatedAt): static
+    public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 

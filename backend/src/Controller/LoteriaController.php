@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Loteria;
@@ -8,7 +17,6 @@ use App\Exception\LoteriaException;
 use App\Form\LoteriaType;
 use App\Repository\LoteriaRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
@@ -18,19 +26,15 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class LoteriaController extends AbstractController
 {
-
     public function __construct(
-            private LoteriaRepository $repository
-    )
-    {
-        
+        private LoteriaRepository $repository,
+    ) {
     }
 
     #[Route('/loterias', name: 'app_loteria_list', methods: ['GET'])]
     public function list(Request $request): JsonResponse
     {
         if ($request->query->has('page')) {
-
             $pageSize = $request->get('page-size', 10);
 
             $page = $request->get('page', 1);
@@ -65,14 +69,14 @@ final class LoteriaController extends AbstractController
                 $errorMessages[] = $error->getMessage();
             }
 
-            throw new EntityException("Informe os campos obrigatórios", $errorMessages);
+            throw new EntityException('Informe os campos obrigatórios', $errorMessages);
         }
 
         try {
             $this->repository->save($loteria);
         } catch (UniqueConstraintViolationException $e) {
             throw new EntityException("A loteria \"{$loteria->getNome()}\" já está cadastrada.");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new LoteriaException($e->getMessage(), $e->getCode(), $e);
         }
 
@@ -80,7 +84,7 @@ final class LoteriaController extends AbstractController
 
         return $this->json(['code' => 201, 'message' => $message], 201);
     }
-    
+
     #[Route('/api/loterias/{uuid:Loteria}', name: 'app_loteria_new', methods: ['PUT'])]
     public function update(Request $request, Loteria $loteria): JsonResponse
     {
@@ -101,12 +105,12 @@ final class LoteriaController extends AbstractController
                 $errorMessages[] = $error->getMessage();
             }
 
-            throw new EntityException("Informe os campos obrigatórios", $errorMessages);
+            throw new EntityException('Informe os campos obrigatórios', $errorMessages);
         }
 
         try {
             $this->repository->save($loteria);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new LoteriaException($e->getMessage(), $e->getCode(), $e);
         }
 

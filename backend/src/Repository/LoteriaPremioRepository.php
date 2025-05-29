@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Loteria;
@@ -15,7 +24,6 @@ use Symfony\Component\Uid\Uuid;
  */
 class LoteriaPremioRepository extends ServiceEntityRepository
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, LoteriaPremio::class);
@@ -28,11 +36,9 @@ class LoteriaPremioRepository extends ServiceEntityRepository
     }
 
     /**
-     * 
-     * @param Loteria $loteria
-     * @return Paginator<int, LoteriaPremio>
+     * @return Paginator<LoteriaPremio>
      */
-    public function list(Loteria $loteria, int $pageSize = 10, int $page = 1): ?array
+    public function list(Loteria $loteria, int $pageSize = 10, int $page = 1)
     {
         $effectivePage = ($page - 1) * $pageSize;
 
@@ -52,7 +58,7 @@ class LoteriaPremioRepository extends ServiceEntityRepository
 
     public function findByUuid(string $uuidString): ?LoteriaPremio
     {
-        $uuid = Uuid::formString($uuidString);
+        $uuid = Uuid::fromString($uuidString);
 
         return $this->createQueryBuilder('lp')
                         ->select('lp,l')
@@ -70,27 +76,27 @@ class LoteriaPremioRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
-//    /**
-//     * @return LoteriaPremio[] Returns an array of LoteriaPremio objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-//    public function findOneBySomeField($value): ?LoteriaPremio
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return LoteriaPremio[] Returns an array of LoteriaPremio objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('l')
+    //            ->andWhere('l.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('l.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+    //    public function findOneBySomeField($value): ?LoteriaPremio
+    //    {
+    //        return $this->createQueryBuilder('l')
+    //            ->andWhere('l.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

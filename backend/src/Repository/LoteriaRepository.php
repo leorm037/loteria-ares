@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Loteria.
+ *
+ * (c) Leonardo Rodrigues Marques <leonardo@rodriguesmarques.com.br>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Loteria;
@@ -13,17 +22,11 @@ use Symfony\Component\Uid\Uuid;
  */
 class LoteriaRepository extends ServiceEntityRepository
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Loteria::class);
     }
 
-    /**
-     * 
-     * @param Loteria $loteria
-     * @return void
-     */
     public function save(Loteria $loteria): void
     {
         $this->getEntityManager()->persist($loteria);
@@ -31,10 +34,7 @@ class LoteriaRepository extends ServiceEntityRepository
     }
 
     /**
-     * 
-     * @param int $pageSize
-     * @param int $page
-     * @return Paginator<int, Loteria>
+     * @return Paginator<Loteria>
      */
     public function list(int $pageSize = 10, int $page = 1)
     {
@@ -50,7 +50,6 @@ class LoteriaRepository extends ServiceEntityRepository
     }
 
     /**
-     * 
      * @return Loteria[]|null
      */
     public function listOrderByNome(): ?array
@@ -62,11 +61,6 @@ class LoteriaRepository extends ServiceEntityRepository
         ;
     }
 
-    /**
-     * 
-     * @param string $uuidString
-     * @return Loteria|null
-     */
     public function findByUuid(string $uuidString): ?Loteria
     {
         $uuid = Uuid::fromString($uuidString);
