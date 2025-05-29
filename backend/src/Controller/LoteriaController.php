@@ -31,23 +31,30 @@ final class LoteriaController extends AbstractController
     ) {
     }
 
-    #[Route('/loterias', name: 'app_loteria_list', methods: ['GET'])]
+    #[Route('/api/loterias', name: 'app_loteria_list', methods: ['GET'])]
     public function list(Request $request): JsonResponse
     {
-        if ($request->query->has('page')) {
-            $pageSize = $request->get('page-size', 10);
+        $pageSize = $request->get('page-size', 10);
 
-            $page = $request->get('page', 1);
+        $page = $request->get('page', 1);
 
-            $loterias = $this->repository->list($pageSize, $page);
-        } else {
-            $loterias = $this->repository->listOrderByNome();
-        }
+        $loterias = $this->repository->list($pageSize, $page);
 
-        return $this->json(['code' => 200, 'data' => $loterias], 200);
+        $data = [
+            'collection_size' => $loterias->count(),
+            'loterias' => $loterias->getQuery()->getResult(),
+        ];
+
+        return $this->json(['code' => 200, 'data' => $loterias], 200, [], ['groups' => 'list']);
     }
 
-    #[Route('/api/loterias', name: 'app_loteria_new', methods: ['POST', 'PUT'])]
+    #[Route('/api/loterias/{uuid}', name: 'app_loteria_find', methods: ['GET'], requirements: ['uuid' => '[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}'])]
+    public function find(Loteria $loteria): JsonResponse
+    {
+        return $this->json(['code' => 200, 'data' => $loteria], 200, [], ['groups' => 'list']);
+    }
+
+    #[Route('/api/loterias', name: 'app_loteria_new', methods: ['POST'])]
     public function new(Request $request): JsonResponse
     {
         $loteria = new Loteria();
@@ -85,10 +92,9 @@ final class LoteriaController extends AbstractController
         return $this->json(['code' => 201, 'message' => $message], 201);
     }
 
-    #[Route('/api/loterias/{uuid:Loteria}', name: 'app_loteria_new', methods: ['PUT'])]
-    public function update(Request $request, Loteria $loteria): JsonResponse
+    #[Route('/api/loterias/{uuid}', name: 'app_loteria_update', methods: ['PUT'], requirements: ['uuid' => '[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}'])]
+    public function update(Loteria $loteria, Request $request): JsonResponse
     {
-        /** @var FormInterface $type */
         $type = $this->createForm(LoteriaType::class, $loteria);
 
         $data = json_decode($request->getContent(), true);
@@ -100,7 +106,6 @@ final class LoteriaController extends AbstractController
 
             $errors = $type->getErrors(true);
 
-            /** @var FormError $error */
             foreach ($errors as $error) {
                 $errorMessages[] = $error->getMessage();
             }

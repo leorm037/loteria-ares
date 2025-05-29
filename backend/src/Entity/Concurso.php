@@ -49,7 +49,7 @@ class Concurso extends AbstractEntity
 
     /** @var array<int,string> */
     #[ORM\Column(nullable: true)]
-    private ?array $raterio_premio = null;
+    private ?array $rateioPremio = null;
 
     /** @var array<int,string> */
     #[ORM\Column(nullable: true)]
@@ -153,17 +153,17 @@ class Concurso extends AbstractEntity
     /**
      * @return array<int,string>|null
      */
-    public function getRaterioPremio(): ?array
+    public function getRateioPremio(): ?array
     {
-        return $this->raterio_premio;
+        return $this->rateioPremio;
     }
 
     /**
-     * @param array<int,string>|null $raterio_premio
+     * @param array<int,string>|null $rateioPremio
      */
-    public function setRaterioPremio(?array $raterio_premio): static
+    public function setRateioPremio(?array $rateioPremio): static
     {
-        $this->raterio_premio = $raterio_premio;
+        $this->rateioPremio = $rateioPremio;
 
         return $this;
     }

@@ -77,11 +77,14 @@ services:
     container_name: loteria-httpd
     image: httpd:2.4.63-alpine
     ports: 
-      - 3000:80
+      - 3443:443
+      - 3080:80
     volumes:
       - .:/usr/local/apache2/htdocs
       - ./docker/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./docker/httpd/cors.conf:/usr/local/apache2/conf/extra/cors.conf
+      - ./docker/httpd/certs/server.crt:/usr/local/apache2/conf/certs/server.crt
+      - ./docker/httpd/certs/server.key:/usr/local/apache2/conf/certs/server.key
     working_dir: /usr/local/apache2/htdocs
     depends_on:
       - php-fpm

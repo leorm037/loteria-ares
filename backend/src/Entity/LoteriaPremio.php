@@ -32,19 +32,19 @@ class LoteriaPremio extends AbstractEntity
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de dezenas jogadas.')]
-    private ?int $dezenasJogadas = null;
+    private ?int $qtdDezenasJogadas = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de dezenas acertadas.')]
-    private ?int $dezenasAcertadas = null;
+    private ?int $qtdDezenasAcertadas = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de dezenas premiadas.')]
-    private ?int $dezenasPremiadas = null;
+    private ?int $qtdDezenasPremiadas = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de premios.')]
-    private ?int $premios = null;
+    private ?int $qtdPremios = null;
 
     #[ORM\Column]
     protected ?\DateTimeImmutable $createdAt = null;
@@ -72,50 +72,50 @@ class LoteriaPremio extends AbstractEntity
         return $this;
     }
 
-    public function getDezenasJogadas(): ?int
+    public function getQtdDezenasJogadas(): ?int
     {
-        return $this->dezenasJogadas;
+        return $this->qtdDezenasJogadas;
     }
 
-    public function setDezenasJogadas(int $dezenasJogadas): static
+    public function setQtdDezenasJogadas(int $qtdDezenasJogadas): static
     {
-        $this->dezenasJogadas = $dezenasJogadas;
+        $this->qtdDezenasJogadas = $qtdDezenasJogadas;
 
         return $this;
     }
 
-    public function getDezenasAcertadas(): ?int
+    public function getQtdDezenasAcertadas(): ?int
     {
-        return $this->dezenasAcertadas;
+        return $this->qtdDezenasAcertadas;
     }
 
-    public function setDezenasAcertadas(int $dezenasAcertadas): static
+    public function setQtdDezenasAcertadas(int $qtdDezenasAcertadas): static
     {
-        $this->dezenasAcertadas = $dezenasAcertadas;
+        $this->qtdDezenasAcertadas = $qtdDezenasAcertadas;
 
         return $this;
     }
 
-    public function getDezenasPremiadas(): ?int
+    public function getQtdDezenasPremiadas(): ?int
     {
-        return $this->dezenasPremiadas;
+        return $this->qtdDezenasPremiadas;
     }
 
-    public function setDezenasPremiadas(int $dezenasPremiadas): static
+    public function setQtdDezenasPremiadas(int $qtdDezenasPremiadas): static
     {
-        $this->dezenasPremiadas = $dezenasPremiadas;
+        $this->qtdDezenasPremiadas = $qtdDezenasPremiadas;
 
         return $this;
     }
 
-    public function getPremios(): ?int
+    public function getQtdPremios(): ?int
     {
-        return $this->premios;
+        return $this->qtdPremios;
     }
 
-    public function setPremios(int $premios): static
+    public function setQtdPremios(int $qtdPremios): static
     {
-        $this->premios = $premios;
+        $this->qtdPremios = $qtdPremios;
 
         return $this;
     }

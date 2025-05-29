@@ -15,6 +15,8 @@ use App\Repository\LoteriaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,48 +27,59 @@ class Loteria extends AbstractEntity
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['list'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 60)]
     #[Assert\NotBlank(message: 'Informe o nome da Loteria.')]
+    #[Groups(['list'])]
     private ?string $nome = null;
 
     #[ORM\Column(type: 'uuid')]
+    #[Groups(['list'])]
     protected ?Uuid $uuid = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Informe a url da API da Loteria.')]
+    #[Groups(['list'])]
     private ?string $apiUrl = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['list'])]
     protected ?string $slugUrl = null;
 
     /** @var array<int,int> $apostas */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe a quantidade de dezenas permitidas para apostar.')]
+    #[Groups(['list'])]
     private array $apostas = [];
 
     /** @var array<int,int> $dezenas */
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Informe as dezenas que podem ser apostadas.')]
+    #[Groups(['list'])]
     private array $dezenas = [];
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Groups(['list'])]
     protected ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['list'])]
     protected ?\DateTime $updatedAt = null;
 
     /**
      * @var Collection<int, LoteriaPremio>
      */
     #[ORM\OneToMany(targetEntity: LoteriaPremio::class, mappedBy: 'loteria', orphanRemoval: true)]
+    #[ MaxDepth(1)]
     private Collection $loteriaPremios;
 
     /**
      * @var Collection<int, Concurso>
      */
     #[ORM\OneToMany(targetEntity: Concurso::class, mappedBy: 'loteria', orphanRemoval: true)]
+    #[ MaxDepth(1)]
     private Collection $concursos;
 
     public function __construct()
